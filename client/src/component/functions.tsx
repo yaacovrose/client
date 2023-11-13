@@ -2,6 +2,7 @@ import { useAppDispatch,useAppSelector } from "../app/hooks";
 import { useEffect} from 'react';
 import axios from 'axios';
 import { setProducts } from "../app/dataSlice";
+import Product from "./interface";
 
 export function connectToData(){
 
@@ -23,7 +24,7 @@ export function connectToData(){
 }
 
 
-// function getTopFiveCategoriesByCount(products) {
+// export function getTopFiveCategoriesByCount(products:Product[]) {
  
 //   const categoryCounts = {};
 
