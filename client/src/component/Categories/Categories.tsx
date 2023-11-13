@@ -3,24 +3,30 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
+import { useAppSelector } from '../../app/hooks';
 
 
-const categories = ({ category }) => {
+const Categories = () => {
+
+  const {cat} = useParams()
   const [products, setProducts] = useState<Product[] | null>(null);
   const navigate = useNavigate();
 
-  const getProducts = () => {
-    const products = .....filter(product => product.category === category)
-    setProducts(products)
-  };
+      const data = useAppSelector((state) => state.products);
 
+  const getProducts = () => {
+    const dataProducts = data.products.filter(product => product.category == cat)
+  
+    setProducts(dataProducts)
+  };
   useEffect(() => {
     getProducts();
-  }, []);
-
+  }, [data.products]);
+  
+  console.log(products);
   const getProductById = (id: number) => {
     navigate(`/productPage/${id}`);
   };
@@ -30,25 +36,15 @@ const categories = ({ category }) => {
       <div className="page">
         <div id="cards">
           {products === null ? (
-            <p></p>
+            <p>kjljjhjk</p>
           ) : (
             products.map((product) => {
               return (
-                // <div
-                //   id="tripCard"
-                //   key={product.id}
-                //   onClick={() => getProductById(product.id)}
-                // >
-                //   {/* <img src={product.image} /> */}
-                //   <hr></hr>
-                //   <h3>{product.title}</h3>
-                // </div>
                 <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea onClick={()=>getProductById(product.id)}>
                   <CardMedia
                     component="img"
                     height="140"
-                    // image={product.}
                     alt="green iguana"
                   />
                   <CardContent>
@@ -70,4 +66,4 @@ const categories = ({ category }) => {
   );
 };
 
-export default categories;
+export default Categories;
