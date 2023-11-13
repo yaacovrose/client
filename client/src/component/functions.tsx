@@ -2,6 +2,7 @@ import { useAppDispatch } from "../app/hooks";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setProducts } from "../app/dataSlice";
+import Product from "./interface";
 
 export function connectToData() {
 
@@ -21,3 +22,30 @@ export function connectToData() {
   }, []);
 
 }
+
+
+// export function getTopFiveCategoriesByCount(products:Product[]) {
+ 
+//   const categoryCounts = {};
+
+ 
+//   products.forEach((product) => {
+//     const category = product.category;
+//     const count = product.count;
+
+//     categoryCounts[category] = (categoryCounts[category] || 0) + count;
+//   });
+
+//   const categoryArray = Object.keys(categoryCounts).map((category) => ({
+//     category: category,
+//     count: categoryCounts[category],
+//   }));
+
+
+//   categoryArray.sort((a, b) => b.count - a.count);
+
+//   return categoryArray.slice(0, 5);
+// }
+
+// const topFiveCategories = getTopFiveCategoriesByCount(products);
+// console.log(topFiveCategories);
