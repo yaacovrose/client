@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+import type {PayloadAction} from '@reduxjs/toolkit'
 
 interface FlagState {
     flag: boolean;
@@ -12,8 +13,8 @@ const initialState: FlagState = {
     name: 'flagData',
     initialState,
     reducers: {
-      setFlag: (state) => {
-        state.flag = !state.flag
+      setFlag: (state, action: PayloadAction<boolean>) => {
+        state.flag = action.payload;
       },
     },
   });

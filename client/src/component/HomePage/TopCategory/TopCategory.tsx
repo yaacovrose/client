@@ -1,5 +1,5 @@
 import CategoryCard from "../../mui/Mui.CategotyCard";
-import ProductCard from "../../mui/Mui.Productcard";
+import ProductCard from "../../mui/Mui.ProductCard";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,7 @@ export default function TopCategoryAndProduct() {
   };
 
   const topFive = sortByCount(allData.products);
-  console.log(topFive);
+ 
 
   return (
     <div>
