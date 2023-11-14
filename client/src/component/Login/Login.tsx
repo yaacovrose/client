@@ -51,6 +51,7 @@ export default function Login() {
             type="email"
             fullWidth
             variant="standard"
+            required
           />
           <TextField
             onChange={(e) => {
@@ -64,6 +65,7 @@ export default function Login() {
             type="password"
             fullWidth
             variant="standard"
+            required
           />
           <TextField
             onChange={(e) => {
@@ -77,6 +79,7 @@ export default function Login() {
             type="password"
             fullWidth
             variant="standard"
+            required
           />
         </DialogContent>
         <DialogActions>
