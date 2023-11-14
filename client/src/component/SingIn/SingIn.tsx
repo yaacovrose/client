@@ -10,54 +10,49 @@ import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFlag } from "../../app/flagSlice";
 
-
 export default function SignIn() {
-  // const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordVerification, setPasswordVerification] = React.useState("");
   const [userName, setUserName] = React.useState("");
 
-  const dispatch = useAppDispatch()
-const open2 = useAppSelector((state)=> state.flag.flag)
-  const handleClickOpen = () => {
-    dispatch(setFlag(true))
+  const dispatch = useAppDispatch();
 
-    // setOpen(true);
+  const open = useAppSelector((state) => state.flag.flag);
+
+  const handleClickOpen = () => {
+    dispatch(setFlag(true));
   };
 
   const handleClose = () => {
-    dispatch(setFlag(false))
-    // setOpen(false);
+    dispatch(setFlag(false));
   };
 
-  // const handleRegistration = () => {
-  //   if(password === passwordVerification){
-  //       setOpen(false);
-
-  //       localStorage.setItem(email, password);
-  //   }else{}
-  // };
   const handleRegistration = async () => {
-    try {
-      const userData = {
-        userName: userName,
-        email: email,
-        password: password,
-      };
-      const response = await axios.post(
-        "http://localhost:8181/api/users",
-        userData
-      );
-      if (response.data) {
-    dispatch(setFlag(false))
-
-        // setOpen(false);
-
-        // ................................
+    if (
+      password === passwordVerification &&
+      password.length > 0 &&
+      email.length > 0 &&
+      userName.length > 0
+    ) {
+      try {
+        const userData = {
+          userName: userName,
+          email: email,
+          password: password,
+        };
+        const response = await axios.post(
+          "http://localhost:8181/api/users",
+          userData
+        );
+        if (response.data) {
+          dispatch(setFlag(false));
+          localStorage.setItem("userName", userName);
+          // ................................
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
       }
-    } catch (error) {
-      console.error("Error during registration:", error);
     }
   };
 
@@ -66,7 +61,7 @@ const open2 = useAppSelector((state)=> state.flag.flag)
       <Button variant="outlined" onClick={handleClickOpen}>
         sign IN
       </Button>
-      <Dialog open={open2} onClose={handleClose}>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle>registration</DialogTitle>
         <DialogContent>
           <DialogContentText>
