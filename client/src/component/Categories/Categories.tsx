@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
 import { useAppSelector } from '../../app/hooks';
+import Heder from '../Heder/Heder';
 
 
 const Categories = () => {
@@ -35,8 +36,9 @@ const Categories = () => {
     <main>
       <div className="page">
         <div id="cards">
+          <Heder/>
           {products === null ? (
-            <p>kjljjhjk</p>
+            <p></p>
           ) : (
             products.map((product) => {
               return (

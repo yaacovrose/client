@@ -8,7 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function SignIn() {
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -55,6 +55,7 @@ export default function Login() {
             type="email"
             fullWidth
             variant="standard"
+            required
           />
           <TextField
             onChange={(e) => {
@@ -68,6 +69,7 @@ export default function Login() {
             type="password"
             fullWidth
             variant="standard"
+            required
           />
         </DialogContent>
         <DialogActions>
