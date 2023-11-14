@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from './dataSlice'
+import flagReducer from './flagSlice'
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
+    flag: flagReducer,
   },
 });
 
