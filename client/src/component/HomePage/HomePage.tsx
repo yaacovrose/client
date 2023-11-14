@@ -6,7 +6,7 @@ import TopCategoryAndProduct from './TopCategory/TopCategory';
 
 
 export default function HomePage(){
-
+    
     connectToData()
     return(
         <div>

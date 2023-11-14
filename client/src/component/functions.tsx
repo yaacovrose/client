@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { useEffect } from 'react';
 import axios from 'axios';
 import { setProducts } from "../app/dataSlice";
@@ -39,4 +39,10 @@ export const sortByCount = (products: Product[]): Product[] => {
   const topFive = sortedProducts.slice(0, 5);
 
   return topFive;
+};
+
+
+export const findProductById = (productId: number): Product | undefined => {
+  const data= useAppSelector(state => state.products)
+  return data.products.find(product => product.id === productId);
 };
