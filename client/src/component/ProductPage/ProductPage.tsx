@@ -22,6 +22,9 @@ export default function ProductPage() {
     navigate(`/categories/${product?.category}`);
   };
 
+  const addToCart = () => {
+    window.alert("נוסף לעגלה");
+  }
   return (
     <main>
       {product === null ? (
@@ -56,6 +59,9 @@ export default function ProductPage() {
           </div>
         </div>
       )}
+                <Button variant="contained" onClick={addToCart}>
+            add to cart
+          </Button>
     </main>
   );
 }
