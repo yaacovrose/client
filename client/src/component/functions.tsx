@@ -24,28 +24,19 @@ export function connectToData() {
 }
 
 
-// export function getTopFiveCategoriesByCount(products:Product[]) {
- 
-//   const categoryCounts = {};
+export const sortByCount = (products: Product[]): Product[] => {
+  const sortedProducts = [...products];
 
- 
-//   products.forEach((product) => {
-//     const category = product.category;
-//     const count = product.count;
+  for (let i = 0; i < sortedProducts.length - 1; i++) {
+    for (let j = 0; j < sortedProducts.length - 1 - i; j++) {
+      if (sortedProducts[j].count < sortedProducts[j + 1].count) {
+        const temp = sortedProducts[j];
+        sortedProducts[j] = sortedProducts[j + 1];
+        sortedProducts[j + 1] = temp;
+      }
+    }
+  }
+  const topFive = sortedProducts.slice(0, 5);
 
-//     categoryCounts[category] = (categoryCounts[category] || 0) + count;
-//   });
-
-//   const categoryArray = Object.keys(categoryCounts).map((category) => ({
-//     category: category,
-//     count: categoryCounts[category],
-//   }));
-
-
-//   categoryArray.sort((a, b) => b.count - a.count);
-
-//   return categoryArray.slice(0, 5);
-// }
-
-// const topFiveCategories = getTopFiveCategoriesByCount(products);
-// console.log(topFiveCategories);
+  return topFive;
+};

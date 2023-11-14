@@ -14,7 +14,7 @@ export default function HomePage(){
         <div>
             <Heder/>
             <HomeCategories/>
-            {/* <TopCategoryAndProduct/> */}
+            <TopCategoryAndProduct/>
             
         </div>
     )
