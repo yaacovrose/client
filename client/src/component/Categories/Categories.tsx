@@ -10,25 +10,21 @@ import { useAppSelector } from "../../app/hooks";
 import Heder from "../Heder/Heder";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-
-interface Prices {
-  minPrice: number;
-  maxPrice: number;
-}
+import Prices from "../interfaces/Price";
 
 const Categories = () => {
   const { cat } = useParams();
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filterProducts, setFilterProducts] = useState<Product[] | null>(null);
   const [value, setValue] = useState<string | number>("");
+  // const [saveValue, setSaveValue] = useState<number>(0);
   const navigate = useNavigate();
   const data = useAppSelector((state) => state.products);
 
   const getProducts = () => {
     const dataProducts = data.products.filter(
-      (product) => product.category == cat
+      (product) => product.category === cat
     );
-
     setProducts(dataProducts);
     setFilterProducts(dataProducts);
   };
@@ -37,9 +33,24 @@ const Categories = () => {
     getProducts();
   }, [data.products]);
 
-  const getProductById = (id: number) => {
-    navigate(`/productPage/${id}`);
+  // useEffect(() => {
+  //   setSaveValue(value)
+  // }, [value]);
+
+  const clickOnCard = (id: number) => {
+    const compare = localStorage.getItem("compare1");
+    if (compare) {
+      localStorage.setItem('compare2', `${id}`)
+      navigate("/comparePrices");
+      // localStorage.removeItem('compare1')
+    } else {
+      navigate(`/productPage/${id}`);
+    }
   };
+
+  // const getProductById = (id: number) => {
+
+  // };
 
   const { minPrice, maxPrice }: Prices = products?.reduce(
     (acc, product) => ({
@@ -47,9 +58,7 @@ const Categories = () => {
       maxPrice: Math.max(acc.maxPrice, product.price),
     }),
     { minPrice: Infinity, maxPrice: -Infinity }
-    ) ?? { minPrice: 0, maxPrice: 0 };
-    
-    // setValue(maxPrice),
+  ) ?? { minPrice: 0, maxPrice: 0 };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value === "" ? 0 : Number(event.target.value));
@@ -62,28 +71,33 @@ const Categories = () => {
   return (
     <main>
       <div className="page">
-        <div id="cards">
-          <Heder />
-          <Box sx={{ width: 300 }}>
-            <Slider
-              // defaultValue={50}
-              // aria-label="Default"
-              // valueLabelDisplay="auto"
-              value={typeof value === "number" ? value : 0}
-              min={minPrice}
-              max={maxPrice}
-              onChange={handleChange}
-              aria-labelledby="dynamic-range-slider"
-              valueLabelDisplay="auto"
-            />
-          </Box>
+        <Heder />
+        <Box sx={{ width: 300 }}>
+          <Slider
+            aria-label="Default"
+            value={typeof value === "number" ? value : maxPrice}
+            min={minPrice}
+            max={maxPrice}
+            onChange={handleChange}
+            aria-labelledby="dynamic-range-slider"
+            valueLabelDisplay="auto"
+          />
+        </Box>
+        <div
+          id="cards"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+          }}
+        >
           {filterProducts === null ? (
             <p></p>
           ) : (
             filterProducts.map((product) => {
               return (
                 <Card sx={{ maxWidth: 345 }}>
-                  <CardActionArea onClick={() => getProductById(product.id)}>
+                  <CardActionArea onClick={() => clickOnCard(product.id)}>
                     <CardMedia
                       component="img"
                       height="140"

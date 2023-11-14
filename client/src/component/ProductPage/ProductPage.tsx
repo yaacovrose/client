@@ -14,24 +14,25 @@ export default function ProductPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const newProduct = data.products.find((p) => p.id == id);
+    const newProduct = data.products.find((p) => p.id === parseInt(id));
     setProduct(newProduct);
   }, [id, data.products]);
 
   const comparePrices = () => {
+    localStorage.setItem('compare1', `${product?.id}`)
     navigate(`/categories/${product?.category}`);
   };
 
   const addToCart = () => {
     window.alert("נוסף לעגלה");
-  }
+  };
   return (
     <main>
       {product === null ? (
         <p>Loading...</p>
       ) : (
         <div className="page">
-          <Heder/>
+          <Heder />
           <Button variant="contained" onClick={comparePrices}>
             Compare prices
           </Button>
@@ -59,9 +60,9 @@ export default function ProductPage() {
           </div>
         </div>
       )}
-                <Button variant="contained" onClick={addToCart}>
-            add to cart
-          </Button>
+      <Button variant="contained" onClick={addToCart}>
+        add to cart
+      </Button>
     </main>
   );
 }
