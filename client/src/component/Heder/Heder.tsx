@@ -1,7 +1,6 @@
 import "./heder.css";
 import Login from "../Login/Login";
 import SignIn from "../SingIn/SingIn";
-import * as React from "react";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge, { BadgeProps } from "@mui/material/Badge";
@@ -17,7 +16,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   },
 }));
 
-export default function Heder() {
+export default function Header() {
   return (
     <div className="heder">
       <Login />
@@ -28,7 +27,10 @@ export default function Heder() {
           <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
-      heder
     </div>
   );
 }
+
+
+
+
