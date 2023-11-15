@@ -8,7 +8,9 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-
+import { useAppSelector } from "../../app/hooks";
+import { useEffect, useState } from "react";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -20,7 +22,9 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 export default function Header() {
-  const Navigate = useNavigate()
+  const [quantity, setQuantity] = useState<number>(0);
+
+  const Navigate = useNavigate();
 
   const homePage = () => {
     Navigate(`/`);
@@ -29,38 +33,36 @@ export default function Header() {
   const handleClick = () => {
     Navigate(`/shoppingCart`);
   };
+
+  const productInCart = useAppSelector((state) => state.cart.products);
+
+  useEffect(() => {
+    let num = 0;
+    productInCart.map((product) => {
+      num += product.quantity;
+      setQuantity(num);
+    });
+  }, [productInCart]);
+
   return (
     <div className="heder">
       <Login />
       <SignIn />
 
       <Stack direction="row" spacing={3}>
-          <HomeOutlinedIcon onClick={homePage} />
-        </Stack>
+        <HomeOutlinedIcon onClick={homePage} />
+      </Stack>
 
       <IconButton onClick={handleClick} aria-label="cart">
-        <StyledBadge  badgeContent={8} color="secondary">
-          <ShoppingCartIcon  />
+        <StyledBadge badgeContent={quantity} color="secondary">
+          <ShoppingCartIcon />
         </StyledBadge>
       </IconButton>
 
-      {/* <Stack
-          direction="row"
-          spacing={3}
-          alignItems="flex-end"
-          onClick={handleClick}
-          aria-label="cart"
-        >
-        </Stack> */}
+      <div>
+        <AccountCircleIcon />
+        <span>{localStorage.getItem("userName")}</span>
+      </div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-

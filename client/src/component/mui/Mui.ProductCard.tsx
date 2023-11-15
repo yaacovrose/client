@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import Product from "../interface";
 import { useAppDispatch } from "../../app/hooks";
 import { addProduct } from "../../app/cartSlice";
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 interface ProductCardProps {
   product: Product;
@@ -47,7 +50,10 @@ interface ProductCardProps {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <Button onClick={()=>dispatch(addProduct(addTooCart))}>add to cart</Button>
+      <IconButton color="primary" aria-label="add to shopping cart">
+        <AddShoppingCartIcon onClick={()=>dispatch(addProduct(addTooCart))}/>
+      </IconButton>
+      {/* <Button onClick={()=>dispatch(addProduct(addTooCart))}>add to cart</Button> */}
     </Card>
   );
 };
