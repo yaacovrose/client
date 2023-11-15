@@ -11,13 +11,15 @@ function MyRouter(): JSX.Element {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<HomePage/>} />
-      <Route path="/log-in" element={<Login/>} />
-      <Route path="/singIn" element={<SingIn/>} />
-      <Route path="/productPage/:id" element={<ProductPage/>} />
-      <Route path="/comparePrices" element={<ComparePrices/>} />
-      <Route path="/categories/:cat" element={<Categories/>} />
-      <Route path="/shoppingCart" element={<ShoppingCart/>} />
+        <Route>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/log-in" element={<Login />} />
+          <Route path="/singIn" element={<SingIn />} />
+          <Route path="/productPage/:id" element={<ProductPage />} />
+          <Route path="/comparePrices" element={<ComparePrices />} />
+          <Route path="/categories/:cat" element={<Categories />} />
+          <Route path="/shoppingCart" element={<ShoppingCart />} />
+        </Route>
       </Routes>
     </Router>
   );

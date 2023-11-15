@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
 import { useAppSelector } from "../../app/hooks";
-import Heder from "../Heder/Heder";
+import Heder from "../Header/Header";
 import ProductCard from "../mui/Mui.ProductCard";
 
 const Categories = () => {
@@ -23,7 +23,7 @@ const Categories = () => {
   }, [data.products]);
 
   return (
-    <main>
+    <main style={{width: "950px"}}>
       <div className="page">
         <div id="cards">
           <Heder />

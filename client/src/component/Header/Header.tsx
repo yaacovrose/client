@@ -1,4 +1,4 @@
-import "./heder.css";
+import "./header.css";
 import Login from "../Login/Login";
 import SignIn from "../SingIn/SingIn";
 import IconButton from "@mui/material/IconButton";
@@ -24,7 +24,7 @@ export default function Header() {
     Navigate(`/shoppingCart`);
   };
   return (
-    <div className="heder">
+    <div className="header" style={{width: "950px", justifyContent: "center", alignItems: "center", display: "flex"}}>
       <Login />
       <SignIn />
 

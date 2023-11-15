@@ -5,7 +5,7 @@ import "./productPage.css";
 import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Heder from "../Heder/Heder";
+import Heder from "../Header/Header";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | null | undefined>(null);
