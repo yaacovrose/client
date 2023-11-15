@@ -6,6 +6,8 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { Stack } from "@mui/material";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
@@ -20,6 +22,10 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 export default function Header() {
   const Navigate = useNavigate()
 
+  const homePage = () => {
+    Navigate(`/`);
+  };
+
   const handleClick = () => {
     Navigate(`/shoppingCart`);
   };
@@ -28,11 +34,24 @@ export default function Header() {
       <Login />
       <SignIn />
 
+      <Stack direction="row" spacing={3}>
+          <HomeOutlinedIcon onClick={homePage} />
+        </Stack>
+
       <IconButton onClick={handleClick} aria-label="cart">
         <StyledBadge  badgeContent={8} color="secondary">
           <ShoppingCartIcon  />
         </StyledBadge>
       </IconButton>
+
+      {/* <Stack
+          direction="row"
+          spacing={3}
+          alignItems="flex-end"
+          onClick={handleClick}
+          aria-label="cart"
+        >
+        </Stack> */}
     </div>
   );
 }
