@@ -18,25 +18,29 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 export default function Header() {
+  const Navigate = useNavigate()
 
-  const navigate = useNavigate()
-
-  const cart = () => {
-    navigate('/shoppingCart')
-  }
+  const handleClick = () => {
+    Navigate(`/shoppingCart`);
+  };
   return (
     <div className="heder">
       <Login />
       <SignIn />
 
-      <IconButton aria-label="cart">
-        <StyledBadge badgeContent={8} color="secondary" onClick={cart}>
-          <ShoppingCartIcon />
+      <IconButton onClick={handleClick} aria-label="cart">
+        <StyledBadge  badgeContent={8} color="secondary">
+          <ShoppingCartIcon  />
         </StyledBadge>
       </IconButton>
     </div>
   );
 }
+
+
+
+
+
 
 
 
