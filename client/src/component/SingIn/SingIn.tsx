@@ -15,6 +15,8 @@ export default function SignIn() {
   const [password, setPassword] = React.useState("");
   const [passwordVerification, setPasswordVerification] = React.useState("");
   const [userName, setUserName] = React.useState("");
+  console.log(email, password, userName);
+  
 
   const dispatch = useAppDispatch();
 
@@ -41,6 +43,8 @@ export default function SignIn() {
           email: email,
           password: password,
         };
+        console.log(userData);
+        
         const response = await axios.post(
           "http://localhost:8181/api/users",
           userData

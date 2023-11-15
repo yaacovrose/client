@@ -6,7 +6,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { Stack } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
@@ -45,24 +45,29 @@ export default function Header() {
   }, [productInCart]);
 
   return (
-    <div className="header" style={{  justifyContent: "center", alignItems: "center", display: "flex"}}>
-      <Login />
-      <SignIn />
-
-      <Stack direction="row" spacing={3}>
-        <HomeOutlinedIcon onClick={homePage} />
+    <div className="header" style={{ justifyContent: "space-between", alignItems: "center", display: "flex" }}>
+      <Stack sx={{ display: "flex", flexDirection: "row" }}>
+        <Login />
+        <SignIn />
       </Stack>
 
-      <IconButton onClick={handleClick} aria-label="cart">
-        <StyledBadge badgeContent={quantity} color="secondary">
-          <ShoppingCartIcon />
-        </StyledBadge>
-      </IconButton>
+      <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+        <Stack direction="row" spacing={3}>
+          <HomeOutlinedIcon onClick={homePage} />
+        </Stack>
 
-      <div>
+        <IconButton onClick={handleClick} aria-label="cart">
+          <StyledBadge badgeContent={quantity} color="secondary">
+            <ShoppingCartIcon />
+          </StyledBadge>
+        </IconButton>
+      
+      <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <AccountCircleIcon />
-        <span>{localStorage.getItem("userName")}</span>
-      </div>
+        <Typography variant="h6">{localStorage.getItem("userName")}</Typography>
+      </Stack>
+      </Stack>
+
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { useAppDispatch } from "../../app/hooks";
 import { addProduct } from "../../app/cartSlice";
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useEffect } from "react";
 
 
 interface ProductCardProps {
@@ -27,16 +28,18 @@ interface ProductCardProps {
   // const getProductById = (id: number) => {
   //   navigate(`/productPage/${id}`);
   // };
+  let compare2: string
   const clickOnCard = (id: number) => {
     const compare = localStorage.getItem("compare1");
     if (compare) {
-      localStorage.setItem("compare2", `${id}`);
+      compare2 = `${id}`
+      localStorage.setItem("compare2", compare2);
       navigate("/comparePrices");
-      // localStorage.removeItem('compare1')
     } else {
       navigate(`/productPage/${id}`);
     }
   };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea onClick={() => clickOnCard(product.id)}>

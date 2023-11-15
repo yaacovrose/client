@@ -1,19 +1,21 @@
 import "./comparePrices.css";
 import { useAppSelector } from "../../app/hooks";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+// import Card from "@mui/material/Card";
+// import CardContent from "@mui/material/CardContent";
+// import CardMedia from "@mui/material/CardMedia";
+// import Typography from "@mui/material/Typography";
+// import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../mui/Mui.ProductCard";
-import Header from "../Heder/Heder";
+
 
 export default function ComparePrices() {
   const navigate = useNavigate();
 
   const id1 = localStorage.getItem("compare1");
   const id2 = localStorage.getItem("compare2");
+  localStorage.removeItem('compare1')
+  localStorage.removeItem('compare2')
 
   const data = useAppSelector((state) => state.products);
 
@@ -28,8 +30,6 @@ export default function ComparePrices() {
   };
 
   return (
-    <div>
-      <Header />
       <div
         id="cards"
         style={{
@@ -42,6 +42,5 @@ export default function ComparePrices() {
           <ProductCard product={obj} key={index} />
         ))}
       </div>
-    </div>
   );
 }
