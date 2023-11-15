@@ -17,6 +17,7 @@ export default function HomeCategories() {
       uniqueProductsByCategory.push(product);
     }
   });
+  
   const Navigate = useNavigate();
 
   const handleClick = (cat: string) => {
@@ -26,10 +27,10 @@ export default function HomeCategories() {
   return (
     <div id="category">
       <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", alignItems: "center" }}
       >
         {uniqueProductsByCategory.map((obj, index) => (
-          <div>
+          <div style={{ textAlign: "center" }}>
             <CategoryCard
               key={index}
               category={obj.category}

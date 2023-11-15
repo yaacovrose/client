@@ -17,7 +17,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
           width: "160px",
           height: "160px",
           borderRadius: "50%",
-          margin: 16,
+          margin: "16px",
           textAlign: "center",
           cursor: "pointer",
           backgroundImage:

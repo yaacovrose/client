@@ -7,6 +7,25 @@ import axios from "axios";
 import Product from "../../interface";
 import { useAppSelector } from "../../../app/hooks";
 import { sortByCount } from "../../functions";
+import { useMediaQuery } from "@mui/material";
+import { Stack } from "@mui/system";
+
+
+const gridTemplateLargeScreen = `
+"a b c d e"
+
+"f g h i j"
+
+"k l m n o"
+`
+
+const gridTemplateSmallScreen = `
+"a b c"
+"d e f"
+"g h i"
+"j k l"
+"m n o"
+`
 
 export default function TopCategoryAndProduct() {
   const Navigate = useNavigate();
@@ -33,23 +52,26 @@ export default function TopCategoryAndProduct() {
   };
 
   const topFive = sortByCount(allData.products);
- 
 
   return (
-    <div>
-      {data?.map((obj: any, index: any) => (
-        <div>
+    <Stack sx={{justifyContent: "center", alignItems: "center"}}>
+      <Stack sx={{ display: "flex", flexDirection: "row"}}>
+        {data?.map((obj: any, index: any) => (
+          <Stack sx={{alignItems: "center"}}>
           <CategoryCard
             key={index}
             category={obj.category}
             onClick={handleClick}
           />
           <Typography variant="h5">{obj.category}</Typography>
-        </div>
-      ))}
-      {topFive.map((obj, index) => (
-        <ProductCard product={obj} key={index} />
-      ))}
-    </div>
+          </Stack>
+        ))}
+      </Stack>
+      <Stack sx={{ display: "flex", flexDirection: "row"}}>
+        {topFive.map((obj, index) => (
+          <ProductCard product={obj} key={index} />
+        ))}
+      </Stack>
+    </Stack>
   );
 }
