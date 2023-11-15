@@ -16,6 +16,20 @@ export default function LogIn() {
   const [password, setPassword] = React.useState("");
   const dispatch = useAppDispatch();
 
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password: string): boolean => {
+    return (
+      password.length >= 8 &&
+      (/[A-Z]/.test(password) || /[a-z]/.test(password)) &&
+      /\d/.test(password) &&
+      /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    );
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -25,24 +39,32 @@ export default function LogIn() {
   };
 
   const handleLogIn = async () => {
-    try {
-      const userData = {
-        email: email,
-        password: password,
-      };
-      const response = await axios.post(
-        "http://localhost:8181/api/users/login",
-        userData
-      );
-      if (response.data) {
-        const userName = response.data;
-        console.log(userName);
-        localStorage.setItem("userName", userName);
+    if (validateEmail(email) && validatePassword(password)) {
+      try {
+        const userData = {
+          email: email,
+          password: password,
+        };
+        const response = await axios.post(
+          "http://localhost:8181/api/users/login",
+          userData
+        );
+        if (response.data) {
+          const userName = response.data;
+          console.log(userName);
+          localStorage.setItem("userName", userName);
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+        dispatch(setFlag(true));
+        // setOpen(false);
       }
-    } catch (error) {
-      console.error("Error during registration:", error);
-    }
-    setOpen(false);
+      setOpen(false);
+    } else if (validateEmail(email) && !validatePassword(password)) {
+      window.alert("סיסמא לא תקינה");
+    } else if (!validateEmail(email) && validatePassword(password)) {
+      window.alert("מייל לא תקין");
+    } else window.alert("מייל וסיסמא לא תקינים");
   };
 
   const handleRegistration = () => {
