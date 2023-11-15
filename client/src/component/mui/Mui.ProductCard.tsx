@@ -21,12 +21,22 @@ interface ProductCardProps {
   }
 
   const navigate = useNavigate();
-  const getProductById = (id: number) => {
-    navigate(`/productPage/${id}`);
+  // const getProductById = (id: number) => {
+  //   navigate(`/productPage/${id}`);
+  // };
+  const clickOnCard = (id: number) => {
+    const compare = localStorage.getItem("compare1");
+    if (compare) {
+      localStorage.setItem("compare2", `${id}`);
+      navigate("/comparePrices");
+      // localStorage.removeItem('compare1')
+    } else {
+      navigate(`/productPage/${id}`);
+    }
   };
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea onClick={() => getProductById(product.id)}>
+      <CardActionArea onClick={() => clickOnCard(product.id)}>
         <CardMedia component="img" height="140" alt="green iguana" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

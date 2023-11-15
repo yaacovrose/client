@@ -9,7 +9,7 @@ export default interface Product {
   quantity: number;
 }
 
-interface Attribute {
+export interface Attribute {
   Description: string;
   Details: number | string;
 }
