@@ -51,6 +51,8 @@ export default function LogIn() {
         );
         if (response.data) {
           const userName = response.data;
+          console.log(response);
+          
           console.log(userName);
           localStorage.setItem("userName", userName);
         }
