@@ -6,43 +6,81 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { setFlag } from "../../app/flagSlice";
 
 export default function SignIn() {
-  const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const navigate = useNavigate();
+  const [passwordVerification, setPasswordVerification] = React.useState("");
+  const [userName, setUserName] = React.useState("");
+
+  const dispatch = useAppDispatch();
+
+  const open = useAppSelector((state) => state.flag.flag);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    dispatch(setFlag(true));
   };
 
   const handleClose = () => {
-    setOpen(false);
+    dispatch(setFlag(false));
   };
 
-  const handleSignIn = () => {
-    //....................
-    setOpen(false);
-  };
-
-  const handleLogin = () => {
-    setOpen(false);
-    navigate(`/log-in}`);
+  const handleRegistration = async () => {
+    if (
+      password === passwordVerification &&
+      password.length > 0 &&
+      email.length > 0 &&
+      userName.length > 0
+    ) {
+      try {
+        const userData = {
+          userName: userName,
+          email: email,
+          password: password,
+        };
+        const response = await axios.post(
+          "http://localhost:8181/api/users",
+          userData
+        );
+        if (response.data) {
+          dispatch(setFlag(false));
+          localStorage.setItem("userName", userName);
+          // ................................
+        }
+      } catch (error) {
+        console.error("Error during registration:", error);
+      }
+    }
   };
 
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        SING IN
+        sign IN
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>registration</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To log in, please enter your email and password.
+            To register please enter email and password.
           </DialogContentText>
+          <TextField
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            value={userName}
+            autoFocus
+            margin="dense"
+            id="name"
+            label="user name"
+            type="name"
+            fullWidth
+            variant="standard"
+            required
+          />
           <TextField
             onChange={(e) => {
               setEmail(e.target.value);
@@ -65,7 +103,21 @@ export default function SignIn() {
             autoFocus
             margin="dense"
             id="password"
-            label="Password"
+            label="Enter a password"
+            type="password"
+            fullWidth
+            variant="standard"
+            required
+          />
+          <TextField
+            onChange={(e) => {
+              setPasswordVerification(e.target.value);
+            }}
+            value={passwordVerification}
+            autoFocus
+            margin="dense"
+            id="password"
+            label="Please confirm the password"
             type="password"
             fullWidth
             variant="standard"
@@ -74,8 +126,7 @@ export default function SignIn() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSignIn}>Sign in</Button>
-          <Button onClick={handleLogin}>Log in</Button>
+          <Button onClick={handleRegistration}>Sign up</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

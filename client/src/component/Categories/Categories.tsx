@@ -1,22 +1,22 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
-import { useAppSelector } from '../../app/hooks';
-import Heder from '../Heder/Heder';
-import ProductCard from '../mui/Mui.ProductCard';
-
+import { useAppSelector } from "../../app/hooks";
+import Heder from "../Heder/Heder";
+import ProductCard from "../mui/Mui.ProductCard";
 
 const Categories = () => {
-
-  const {cat} = useParams()
+  const { cat } = useParams();
   const [products, setProducts] = useState<Product[] | null>(null);
 
-      const data = useAppSelector((state) => state.products);
-      
+  const data = useAppSelector((state) => state.products);
+
   const getProducts = () => {
-    const dataProducts = data.products.filter(product => product.category == cat)
-  
-    setProducts(dataProducts)
+    const dataProducts = data.products.filter(
+      (product) => product.category == cat
+    );
+
+    setProducts(dataProducts);
   };
   useEffect(() => {
     getProducts();
@@ -26,10 +26,10 @@ const Categories = () => {
     <main>
       <div className="page">
         <div id="cards">
-          <Heder/>
+          <Heder />
           {products?.map((obj, index) => (
-        <ProductCard product={obj} key={index} />
-      ))}
+            <ProductCard product={obj} key={index} />
+          ))}
         </div>
       </div>
     </main>

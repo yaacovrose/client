@@ -6,12 +6,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import axios from "axios";
+import { useAppDispatch } from "../../app/hooks";
+import { setFlag } from "../../app/flagSlice";
 
-export default function Login() {
+export default function LogIn() {
   const [open, setOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [passwordVerification, setPasswordVerification] = React.useState("");
+  const dispatch = useAppDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,23 +24,42 @@ export default function Login() {
     setOpen(false);
   };
 
+  const handleLogIn = async () => {
+    try {
+      const userData = {
+        email: email,
+        password: password,
+      };
+      const response = await axios.post(
+        "http://localhost:8181/api/users/login",
+        userData
+      );
+      if (response.data) {
+        const userName = response.data;
+        console.log(userName);
+        localStorage.setItem("userName", userName);
+      }
+    } catch (error) {
+      console.error("Error during registration:", error);
+    }
+    setOpen(false);
+  };
+
   const handleRegistration = () => {
-    if(password === passwordVerification){
-        setOpen(false);
-        localStorage.setItem(email, password);
-    }else{}
+    dispatch(setFlag(true));
+    setOpen(false);
   };
 
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
-        LOG IN
+        Log IN
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>registration</DialogTitle>
+        <DialogTitle>Log in</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To register please enter email and password.
+            To log in, please enter your email and password.
           </DialogContentText>
           <TextField
             onChange={(e) => {
@@ -61,21 +83,7 @@ export default function Login() {
             autoFocus
             margin="dense"
             id="password"
-            label="Enter a password"
-            type="password"
-            fullWidth
-            variant="standard"
-            required
-          />
-          <TextField
-            onChange={(e) => {
-              setPasswordVerification(e.target.value);
-            }}
-            value={passwordVerification}
-            autoFocus
-            margin="dense"
-            id="password"
-            label="Please confirm the password"
+            label="Password"
             type="password"
             fullWidth
             variant="standard"
@@ -84,7 +92,8 @@ export default function Login() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleRegistration}>Sign up</Button>
+          <Button onClick={handleLogIn}>Sign in</Button>
+          <Button onClick={handleRegistration}>registration</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

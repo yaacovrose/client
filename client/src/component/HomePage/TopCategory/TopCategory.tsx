@@ -33,23 +33,30 @@ export default function TopCategoryAndProduct() {
   };
 
   const topFive = sortByCount(allData.products);
- 
 
   return (
     <div>
-      {data?.map((obj: any, index: any) => (
-        <div>
-          <CategoryCard
-            key={index}
-            category={obj.category}
-            onClick={handleClick}
-          />
-          <Typography variant="h5">{obj.category}</Typography>
-        </div>
-      ))}
-      {topFive.map((obj, index) => (
-        <ProductCard product={obj} key={index} />
-      ))}
+      <div
+        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+      >
+        {data?.map((obj: any, index: any) => (
+          <div>
+            <CategoryCard
+              key={index}
+              category={obj.category}
+              onClick={handleClick}
+            />
+            <Typography variant="h5">{obj.category}</Typography>
+          </div>
+        ))}
+      </div>
+      <div
+        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
+      >
+        {topFive.map((obj, index) => (
+          <ProductCard product={obj} key={index} />
+        ))}
+      </div>
     </div>
   );
 }
