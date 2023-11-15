@@ -46,9 +46,8 @@ const Categories = () => {
   };
 
   return (
-    <main style={{width: "950px"}}>
+    <main>
       <div className="page">
-        <Heder />
         <Box sx={{ width: 300 }}>
           <Slider
             aria-label="Default"

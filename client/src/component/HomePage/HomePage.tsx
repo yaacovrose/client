@@ -10,11 +10,8 @@ export default function HomePage(){
     connectToData()
     return(
         <div>
-         
-            <Header/>
             <HomeCategories/>
             <TopCategoryAndProduct/>
-            
         </div>
     )
 }

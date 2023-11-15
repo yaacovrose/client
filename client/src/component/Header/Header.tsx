@@ -30,7 +30,7 @@ export default function Header() {
     Navigate(`/shoppingCart`);
   };
   return (
-    <div className="header" style={{width: "950px", justifyContent: "center", alignItems: "center", display: "flex"}}>
+    <div className="header" style={{  justifyContent: "center", alignItems: "center", display: "flex"}}>
       <Login />
       <SignIn />
 

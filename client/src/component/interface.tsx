@@ -7,6 +7,7 @@ export default interface Product {
     attribute: Attribute[];
     count: number;
     quantity: number;
+    image: string;
   }
   interface Attribute {
     Description: string;

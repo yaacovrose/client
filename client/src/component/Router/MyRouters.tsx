@@ -6,12 +6,13 @@ import ProductPage from "../ProductPage/ProductPage";
 import Categories from "../Categories/Categories";
 import ComparePrices from "../ComparePrices/ComparePrices";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import Layout from "../Layout";
 
 function MyRouter(): JSX.Element {
   return (
     <Router>
       <Routes>
-        <Route>
+        <Route element={<Layout/>}>
           <Route path="/" element={<HomePage />} />
           <Route path="/log-in" element={<Login />} />
           <Route path="/singIn" element={<SingIn />} />

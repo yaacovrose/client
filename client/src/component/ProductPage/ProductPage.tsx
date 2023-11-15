@@ -32,7 +32,6 @@ export default function ProductPage() {
         <p>Loading...</p>
       ) : (
         <div className="page">
-          <Heder />
           <Button variant="contained" onClick={comparePrices}>
             Compare prices
           </Button>

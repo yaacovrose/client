@@ -25,9 +25,9 @@ export default function HomeCategories() {
 
   return (
     <div id="category">
-      <div
+      {/* <div
         style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
+      > */}
         {uniqueProductsByCategory.map((obj, index) => (
           <div>
             <CategoryCard
@@ -38,7 +38,7 @@ export default function HomeCategories() {
             <Typography variant="h5">{obj.category}</Typography>
           </div>
         ))}
-      </div>
+      {/* </div> */}
     </div>
   );
 }
