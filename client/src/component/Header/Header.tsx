@@ -6,11 +6,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Badge, { BadgeProps } from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -23,7 +24,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 
 export default function Header() {
   const [quantity, setQuantity] = useState<number>(0);
-  // const [userName, setUserName] = useState(null)
+  const userName = useAppSelector((state) => state.flag.name)
 
   const Navigate = useNavigate();
 
@@ -34,23 +35,17 @@ export default function Header() {
   const handleClick = () => {
     Navigate(`/shoppingCart`);
   };
-// localStorage.removeItem('userName')
+
   const productInCart = useAppSelector((state) => state.cart.products);
 
   useEffect(() => {
-    // let num = 0;
-    // productInCart.map((product) => {
-    //   num += product.quantity;
-    //   setQuantity(num);
-    // });
     setQuantity(productInCart.length)
   }, [productInCart]);
 
-  
-  // useEffect(() => {
-  //   const flag = typeof localStorage.getItem('userName') === 'string'
-  //   setUserName(flag)
-  // }, [localStorage.getItem('userName')]);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("userName");
+  };
 
 
   return (
@@ -58,7 +53,9 @@ export default function Header() {
       <Stack sx={{ display: "flex", flexDirection: "row" }}>
         <Login />
         <SignIn />
+        <Button onClick={handleSignOut}>Sign Out</Button>
       </Stack>
+
 
       <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <Stack direction="row" spacing={3}>
@@ -70,15 +67,13 @@ export default function Header() {
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
-      
-      {/* <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}> */}
-        {/* <AccountCircleIcon /> */}
-        {/* <span>{userName && localStorage.getItem("userName")}</span> */}
-        {/* <span>{localStorage.getItem("userName")}</span> */}
-      {/* </div> */}
-        <Typography variant="h6">{localStorage.getItem("userName")}</Typography>
+
+
+        <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <AccountCircleIcon />
+          <Typography variant="h6">{userName}</Typography>
+        </Stack>
       </Stack>
-      {/* </Stack> */}
 
     </div>
   );

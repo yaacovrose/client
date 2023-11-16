@@ -10,7 +10,6 @@ import { addProduct } from "../../app/cartSlice";
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
-
 interface ProductCardProps {
   product: Product;
 }
@@ -19,33 +18,33 @@ interface ProductCardProps {
   const dispatch = useAppDispatch()
 
   const addTooCart = {
-    productId:product.id,
+    productId:product?.id,
     quantity:1
   }
 
   const navigate = useNavigate();
-  // const getProductById = (id: number) => {
-  //   navigate(`/productPage/${id}`);
-  // };
+
   let compare2: string
   const clickOnCard = (id: number) => {
     const compare = localStorage.getItem("compare1");
     if (compare) {
       compare2 = `${id}`
       localStorage.setItem("compare2", compare2);
+    
       navigate("/comparePrices");
     } else {
       navigate(`/productPage/${id}`);
     }
   };
 
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea onClick={() => clickOnCard(product.id)}>
-        <CardMedia component="img" height="140" alt="green iguana" src={`${product.image}`}/>
+    <Card sx={{ Width: "345px", border: "solid" , borderRadius: "10px"}}>
+      <CardActionArea onClick={() => clickOnCard(product!.id)}>
+        <CardMedia component="img" height="140" alt={`${product?.title}`} src={`${product?.image}`}/>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            {product.title}
+            {product?.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {product.description}
@@ -58,7 +57,6 @@ interface ProductCardProps {
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon onClick={()=>dispatch(addProduct(addTooCart))}/>
       </IconButton>
-      {/* <Button onClick={()=>dispatch(addProduct(addTooCart))}>add to cart</Button> */}
     </Card>
   );
 };

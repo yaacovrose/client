@@ -1,5 +1,4 @@
 import "./shoppingCart.css";
-import Heder from "../Header/Header";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,17 +10,16 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Remove } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
 const ShoppingCart = () => {
 
   const cart = useAppSelector(state => state.cart.products)
 
-  const dispatch = useAppDispatch();
+ 
 
   const handlePurchase = () => {
-    // console.log('Purchase completed:', cart);
-    // setCart([]);
+    
   };
 
   return (

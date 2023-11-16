@@ -5,12 +5,10 @@ import "./productPage.css";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import { IconButton } from "@mui/material";
 import { addProduct } from "../../app/cartSlice";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function ProductPage() {
-  const [product, setProduct] = useState<Product | null | undefined>(null);
+  const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams();
   const data = useAppSelector((state) => state.products);
   const navigate = useNavigate();
@@ -57,7 +55,7 @@ export default function ProductPage() {
               <h4>Category</h4>
               <p>{product?.category}</p>
 
-              {product?.attributes.map((individual, index) => (
+              {product?.attributes?.map((individual, index) => (
                 <div key={index}>
                   <h4>{individual.name}</h4>
                   <p>{individual.value}</p>
@@ -70,9 +68,9 @@ export default function ProductPage() {
           </div>
         </div>
       )}
-      <IconButton color="primary" aria-label="add to shopping cart">
-        <AddShoppingCartIcon onClick={() => addToCart()} />
-      </IconButton>
+      <Button variant="contained" onClick={addToCart}>
+        add to cart
+      </Button>
     </main>
   );
 }

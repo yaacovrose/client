@@ -11,7 +11,6 @@ const Categories = () => {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filterProducts, setFilterProducts] = useState<Product[] | null>(null);
   const data = useAppSelector((state) => state.products);
-
   const getProducts = () => {
     const dataProducts = data.products.filter(
       (product) => product.category == cat
@@ -19,16 +18,17 @@ const Categories = () => {
     setProducts(dataProducts);
     setFilterProducts(dataProducts);
   };
+
   useEffect(() => {
     getProducts();
   }, [data.products]);
-
+  
   const applyFilter = (products: Product[], filter: Filter): Product[] => {
     return products.filter((product) => {
       for (const [key, value] of Object.entries(filter)) {
         if (key === 'price') {
           if(typeof value === 'number'){
-            if (product.price > value) return false; 
+            if (product.price > value) return false;
           }
         } else {
           const attribute = product.attributes.find(
@@ -42,20 +42,16 @@ const Categories = () => {
       return true;
     });
   };
-  
   const log = useAppSelector((state) => state.filter.filter);
-
   useEffect(() => {
     if(products){
       const x = applyFilter(products, log);
       if (x) setFilterProducts(x);
     }
   }, [log]);
-
   return (
     <main>
       <div className="page">
-      
         {products && <Filters products={products} />}
         <div
           id="cards"
@@ -73,5 +69,4 @@ const Categories = () => {
     </main>
   );
 };
-
 export default Categories;

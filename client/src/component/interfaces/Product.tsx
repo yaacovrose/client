@@ -4,7 +4,7 @@ export default interface Product {
   price: number;
   description: string;
   category: string;
-  attributes: Attribute[];
+  attributes?: Attribute[];
   count: number;
   quantity: number;
   image: string;

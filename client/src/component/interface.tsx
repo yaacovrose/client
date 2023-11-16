@@ -4,11 +4,12 @@ export default interface Product {
     price: number;
     description: string;
     category: string;
-    attributes: Attribute[];
+    attribute?: Attribute[];
     count: number;
     quantity: number;
     image: string;
   }
+
   interface Attribute {
     name: string;
     value: number | string;
