@@ -1,11 +1,12 @@
 import { Outlet } from 'react-router-dom'
-import Header from './Header/Header'
+import Header from '../Header/Header'
+import './Layout.css'
 
 
 function Layout() {
     return (
         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-            <div style={{ width: "70vw", background: "coral" }}>
+            <div className='lay' style={{ width: "80vw"}}>
                 <Header />
                 <Outlet />
             </div>

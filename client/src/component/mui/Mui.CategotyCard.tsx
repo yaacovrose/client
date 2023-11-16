@@ -14,14 +14,12 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
   console.log(url);
   
-
-
   return (
     <Paper
       elevation={3}
       style={{
-        width: size ? "50px" : "160px",
-        height: size ? "50px" : "160px",
+        width: size !== 0 ? "50px" : "160px",
+        height: size !== 0 ? "50px" : "160px",
         borderRadius: "50%",
         margin: 16,
         textAlign: "center",

@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../app/hooks";
 import Product from "../../interface";
 import CategoryCard from "../../mui/Mui.CategotyCard";
 import Typography from "@mui/material/Typography";
-import { Box, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
 
 export default function HomeCategories() {
@@ -28,12 +28,9 @@ export default function HomeCategories() {
   const url: CategoryUrls = urls
 
   return (
-    <Stack id="category" flexDirection={"row"}>
+    <Stack id="category" flexDirection={"column"} borderRight={"solid"} padding={"16px"}>
       {uniqueProductsByCategory.map((obj, index) => (
         <Stack spacing={2} alignItems={"center"} display={"flex"} flexDirection={"row"}>
-          <Stack >
-            <Typography variant="h4">{obj.category}</Typography>
-          </Stack>
             <CategoryCard
               size={160}
               key={index}
@@ -41,6 +38,9 @@ export default function HomeCategories() {
               url={url[obj.category]}
               onClick={handleClick}
             />
+          <Stack >
+            <Typography variant="h4">{obj.category}</Typography>
+          </Stack>
         </Stack>
       ))}
     </Stack>

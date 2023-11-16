@@ -5,6 +5,7 @@ import "./productPage.css";
 import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
+import NestedModal from "../Heder/maps/Modal";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | undefined>(undefined);
@@ -19,7 +20,7 @@ export default function ProductPage() {
   }, [id, data.products]);
 
   const comparePrices = () => {
-    localStorage.setItem('compare1', `${product?.id}`)
+    localStorage.setItem("compare1", `${product?.id}`);
     navigate(`/categories/${product?.category}`);
   };
 
@@ -62,6 +63,10 @@ export default function ProductPage() {
       <Button variant="contained" onClick={addToCart}>
         add to cart
       </Button>
+      <main>
+
+        <NestedModal />
+      </main>
     </main>
   );
 }
