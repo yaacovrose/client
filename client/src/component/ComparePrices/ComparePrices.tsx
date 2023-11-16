@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { Button, CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../mui/Mui.ProductCard";
 import Header from "../Heder/Heder";
@@ -21,7 +21,7 @@ export default function ComparePrices() {
   const product2 = data.products.find((p) => p.id == id2);
   const products = [product1, product2];
 
-  const ok = () => {
+  const back = () => {
     localStorage.removeItem("compare1");
     localStorage.removeItem("compare2");
     navigate(`/categories/${product1?.category}`);
@@ -42,6 +42,9 @@ export default function ComparePrices() {
           <ProductCard product={obj} key={index} />
         ))}
       </div>
+      <Button variant="outlined" onClick={back}>
+        back
+      </Button>
     </div>
   );
 }
