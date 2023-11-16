@@ -2,21 +2,21 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../interfaces/Product";
 import "./productPage.css";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import NestedModal from "../Heder/maps/Modal";
+import { addProduct } from "../../app/cartSlice";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams();
   const data = useAppSelector((state) => state.products);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const newProduct: Product | undefined = data.products.find((p) => p.id === parseInt(id!));
-      setProduct(newProduct);
-    
+    const newProduct = data.products.find((p) => p.id === Number(id));
+    setProduct(newProduct);
   }, [id, data.products]);
 
   const comparePrices = () => {
@@ -25,8 +25,16 @@ export default function ProductPage() {
   };
 
   const addToCart = () => {
-    window.alert("נוסף לעגלה");
+    if (product) {
+      dispatch(
+        addProduct({
+          productId: product.id,
+          quantity: 1,
+        })
+      );
+    }
   };
+
   return (
     <main>
       {product === null ? (
@@ -63,10 +71,6 @@ export default function ProductPage() {
       <Button variant="contained" onClick={addToCart}>
         add to cart
       </Button>
-      <main>
-
-        <NestedModal />
-      </main>
     </main>
   );
 }

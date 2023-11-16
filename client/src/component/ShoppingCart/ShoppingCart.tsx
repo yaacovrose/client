@@ -19,8 +19,7 @@ const ShoppingCart = () => {
  
 
   const handlePurchase = () => {
-    // console.log('Purchase completed:', cart);
-    // setCart([]);
+    
   };
 
   return (

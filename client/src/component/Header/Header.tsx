@@ -12,6 +12,7 @@ import { useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
+
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: -3,
@@ -38,16 +39,14 @@ export default function Header() {
   const productInCart = useAppSelector((state) => state.cart.products);
 
   useEffect(() => {
-    let num = 0;
-    productInCart.map((product) => {
-      num += product.quantity;
-      setQuantity(num);
-    });
+    setQuantity(productInCart.length)
   }, [productInCart]);
 
-    const handleSignOut = () => {
-      localStorage.removeItem("userName");
-    };
+
+  const handleSignOut = () => {
+    localStorage.removeItem("userName");
+  };
+
 
   return (
     <div className="header" style={{ justifyContent: "space-between", alignItems: "center", display: "flex" }}>
@@ -56,6 +55,7 @@ export default function Header() {
         <SignIn />
         <Button onClick={handleSignOut}>Sign Out</Button>
       </Stack>
+
 
       <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <Stack direction="row" spacing={3}>
@@ -67,11 +67,12 @@ export default function Header() {
             <ShoppingCartIcon />
           </StyledBadge>
         </IconButton>
-      
-      <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
-        <AccountCircleIcon />
-        <Typography variant="h6">{userName}</Typography>
-      </Stack>
+
+
+        <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
+          <AccountCircleIcon />
+          <Typography variant="h6">{userName}</Typography>
+        </Stack>
       </Stack>
 
     </div>

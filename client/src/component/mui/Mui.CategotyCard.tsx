@@ -11,9 +11,7 @@ interface CategoryCardProps {
 }
 
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
-  console.log(url);
-  
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url }) => {
   return (
     <Paper
       elevation={3}

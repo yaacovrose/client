@@ -24,6 +24,7 @@ export default function LogIn() {
   const validatePassword = (password: string): boolean => {
     return (
       password.length >= 7 &&
+      password.length >= 7 &&
       (/[A-Z]/.test(password) || /[a-z]/.test(password)) &&
       /\d/.test(password) &&
       /[!@#$%^&*(),.?":{}|<>]/.test(password)

@@ -30,11 +30,13 @@ interface ProductCardProps {
     if (compare) {
       compare2 = `${id}`
       localStorage.setItem("compare2", compare2);
+    
       navigate("/comparePrices");
     } else {
       navigate(`/productPage/${id}`);
     }
   };
+
 
   return (
     <Card sx={{ Width: "345px", border: "solid" , borderRadius: "10px"}}>
@@ -45,17 +47,20 @@ interface ProductCardProps {
             {product?.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {product?.description}
+            {product.description}
+          </Typography>
+          <Typography gutterBottom variant="body1" component="div">
+            {product.price+ '$'}
           </Typography>
         </CardContent>
       </CardActionArea>
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon onClick={()=>dispatch(addProduct(addTooCart))}/>
       </IconButton>
-      {/* <Button onClick={()=>dispatch(addProduct(addTooCart))}>add to cart</Button> */}
     </Card>
   );
 };
 
 
 export default ProductCard
+
