@@ -5,11 +5,14 @@ import Paper from "@mui/material/Paper";
 
 interface CategoryCardProps {
     category: string;
+    url: string;
     onClick: (category: string) => void;
   }
   
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url }) => {
+  console.log(url);
+  
     return (
       <Paper
         elevation={3}
@@ -20,9 +23,9 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
           margin: 16,
           textAlign: "center",
           cursor: "pointer",
-          backgroundImage:
-            "url(https://ksp.co.il/m_action_libs/img/topCategory/6.png?v=2029)",
+          backgroundImage: `url(${url})`,
           backgroundSize: "cover",
+          backgroundPosition: "center"
         }}
         onClick={() => onClick(category)}
       ></Paper>

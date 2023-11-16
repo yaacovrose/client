@@ -1,5 +1,5 @@
 import "./shoppingCart.css";
-import Heder from "../Heder/Heder";
+import Heder from "../Header/Header";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -26,7 +26,6 @@ const ShoppingCart = () => {
 
   return (
     <div>
-      <Heder />
       {cart.map((obj, index) => {
         const product = findProductById(obj.productId);
         const quantity = obj.quantity
@@ -34,7 +33,7 @@ const ShoppingCart = () => {
         return (
           <Card key={index} sx={{ maxWidth: 345 }}>
             <CardActionArea>
-              <CardMedia component="img" height="140" alt="green iguana" />
+              <CardMedia component="img" height="140" alt="green iguana" src={product!.image}/>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {product?.title}

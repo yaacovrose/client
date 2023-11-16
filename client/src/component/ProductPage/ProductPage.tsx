@@ -2,37 +2,47 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Product from "../interfaces/Product";
 import "./productPage.css";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Heder from "../Heder/Heder";
+import { IconButton } from "@mui/material";
+import { addProduct } from "../../app/cartSlice";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | null | undefined>(null);
   const { id } = useParams();
   const data = useAppSelector((state) => state.products);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const newProduct = data.products.find((p) => p.id === parseInt(id));
+    const newProduct = data.products.find((p) => p.id === Number(id));
     setProduct(newProduct);
   }, [id, data.products]);
 
   const comparePrices = () => {
-    localStorage.setItem('compare1', `${product?.id}`)
+    localStorage.setItem("compare1", `${product?.id}`);
     navigate(`/categories/${product?.category}`);
   };
 
   const addToCart = () => {
-    window.alert("נוסף לעגלה");
+    if (product) {
+      dispatch(
+        addProduct({
+          productId: product.id,
+          quantity: 1,
+        })
+      );
+    }
   };
+
   return (
     <main>
       {product === null ? (
         <p>Loading...</p>
       ) : (
         <div className="page">
-          <Heder />
           <Button variant="contained" onClick={comparePrices}>
             Compare prices
           </Button>
@@ -47,10 +57,10 @@ export default function ProductPage() {
               <h4>Category</h4>
               <p>{product?.category}</p>
 
-              {product?.attribute.map((individual, index) => (
+              {product?.attributes.map((individual, index) => (
                 <div key={index}>
-                  <h4>{individual.Description}</h4>
-                  <p>{individual.Details}</p>
+                  <h4>{individual.name}</h4>
+                  <p>{individual.value}</p>
                 </div>
               ))}
 
@@ -60,9 +70,9 @@ export default function ProductPage() {
           </div>
         </div>
       )}
-      <Button variant="contained" onClick={addToCart}>
-        add to cart
-      </Button>
+      <IconButton color="primary" aria-label="add to shopping cart">
+        <AddShoppingCartIcon onClick={() => addToCart()} />
+      </IconButton>
     </main>
   );
 }
