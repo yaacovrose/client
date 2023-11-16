@@ -41,9 +41,9 @@ interface ProductCardProps {
   };
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ Width: "345px", border: "solid" }}>
       <CardActionArea onClick={() => clickOnCard(product.id)}>
-        <CardMedia component="img" height="140" alt="green iguana" src={`${product.image}`}/>
+        <CardMedia component="img" height="140" alt={`${product.title}`} src={`${product.image}`}/>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.title}

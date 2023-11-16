@@ -3,14 +3,15 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
+import Product from "../interface";
 
-const FilterByParams = ({ products }) => {
+const FilterByParams = ({ products } ) => {
   const newObject: Record<string, string[]> = products?.reduce(
     (acc, product) => {
       const productAttributes: Attribute[] = product.attribute;
 
-      productAttributes.forEach(({ Description, Details }) => {
+      productAttributes.forEach(({Description, Details}) => {
         if (!acc[Description]) {
           acc[Description] = [];
         }

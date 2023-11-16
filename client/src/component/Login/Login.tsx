@@ -8,7 +8,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { useAppDispatch } from "../../app/hooks";
-import { setFlag } from "../../app/flagSlice";
+import { setFlag, setName } from "../../app/flagSlice";
 
 export default function LogIn() {
   const [open, setOpen] = React.useState(false);
@@ -51,14 +51,13 @@ export default function LogIn() {
         );
         if (response.data) {
           const userName = response.data;
-          console.log(userName);
-          localStorage.removeItem("userName");
-          localStorage.setItem("userName", userName);
+          dispatch(setName(userName));
+          // localStorage.removeItem("userName");
+          // localStorage.setItem("userName", userName);
         }
       } catch (error) {
         console.error("Error during registration:", error);
         dispatch(setFlag(true));
-        // setOpen(false);
       }
       setOpen(false);
     } else if (validateEmail(email) && !validatePassword(password)) {

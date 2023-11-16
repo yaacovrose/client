@@ -2,7 +2,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Product from "../interfaces/Product";
 import { useAppSelector } from "../../app/hooks";
-import Heder from "../Header/Header";
 import ProductCard from "../mui/Mui.ProductCard";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
@@ -14,8 +13,6 @@ const Categories = () => {
   const [products, setProducts] = useState<Product[] | null>(null);
   const [filterProducts, setFilterProducts] = useState<Product[] | null>(null);
   const [value, setValue] = useState<string | number>("");
-  // // const [saveValue, setSaveValue] = useState<number>(0);
-  // const navigate = useNavigate();
   const data = useAppSelector((state) => state.products);
 
   const getProducts = () => {
@@ -25,6 +22,7 @@ const Categories = () => {
     setProducts(dataProducts);
     setFilterProducts(dataProducts);
   };
+
   useEffect(() => {
     getProducts();
   }, [data.products]);
