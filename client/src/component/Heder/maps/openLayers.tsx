@@ -41,7 +41,7 @@ const ShopMap: React.FC = () => {
 
     
     
-    markers.forEach((marker, index) => {
+    markers.forEach((marker) => {
       const overlay = new Overlay({
         position: fromLonLat(marker.position),
         element: createMarkerElement(),

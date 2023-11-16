@@ -3,10 +3,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import ShopMap from './openLayers';
-import { ShowChart } from '@mui/icons-material';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute' as const,
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
@@ -29,9 +28,9 @@ export default function NestedModal() {
     setOpen(false);
   };
 
-  function setDialogText(name: any): React.ReactNode {
-    throw new Error('Function not implemented.');
-  }
+  // function setDialogText(name: any): React.ReactNode {
+  //   throw new Error('Function not implemented.');
+  // }
 
   return (
     <div>

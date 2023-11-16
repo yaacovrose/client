@@ -1,9 +1,11 @@
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./homeCategories.css";
 import { useAppSelector } from "../../../app/hooks";
 import Product from "../../interface";
 import CategoryCard from "../../mui/Mui.CategotyCard";
 import Typography from "@mui/material/Typography";
+import { Stack } from "@mui/material";
+import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
 
 export default function HomeCategories() {
   const data = useAppSelector((state) => state.products);
@@ -23,22 +25,24 @@ export default function HomeCategories() {
     Navigate(`/categories/${cat}`);
   };
 
+  const url: CategoryUrls = urls
+
   return (
-    <div id="category">
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {uniqueProductsByCategory.map((obj, index) => (
-          <div>
+    <Stack id="category" flexDirection={"column"} borderRight={"solid"} padding={"16px"}>
+      {uniqueProductsByCategory.map((obj, index) => (
+        <Stack spacing={2} alignItems={"center"} display={"flex"} flexDirection={"row"}>
             <CategoryCard
+              size={160}
               key={index}
               category={obj.category}
+              url={url[obj.category]}
               onClick={handleClick}
             />
-            <Typography variant="h5">{obj.category}</Typography>
-          </div>
-        ))}
-      </div>
-    </div>
+          <Stack >
+            <Typography variant="h4">{obj.category}</Typography>
+          </Stack>
+        </Stack>
+      ))}
+    </Stack>
   );
 }

@@ -4,31 +4,35 @@ import Paper from "@mui/material/Paper";
 
 
 interface CategoryCardProps {
-    category: string;
-    onClick: (category: string) => void;
-  }
-  
+  size: number;
+  category: string;
+  url: string;
+  onClick: (category: string) => void;
+}
 
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick }) => {
-    return (
-      <Paper
-        elevation={3}
-        style={{
-          width: "160px",
-          height: "160px",
-          borderRadius: "50%",
-          margin: 16,
-          textAlign: "center",
-          cursor: "pointer",
-          backgroundImage:
-            "url(https://ksp.co.il/m_action_libs/img/topCategory/6.png?v=2029)",
-          backgroundSize: "cover",
-        }}
-        onClick={() => onClick(category)}
-      ></Paper>
-    );
-  };
 
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
+  console.log(url);
   
-  
-  export default CategoryCard;
+  return (
+    <Paper
+      elevation={3}
+      style={{
+        width: size !== 0 ? "50px" : "160px",
+        height: size !== 0 ? "50px" : "160px",
+        borderRadius: "50%",
+        margin: 16,
+        textAlign: "center",
+        cursor: "pointer",
+        backgroundImage: `url(${url})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
+      onClick={() => onClick(category)}
+    ></Paper>
+  );
+};
+
+
+
+export default CategoryCard;

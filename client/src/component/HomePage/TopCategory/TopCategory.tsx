@@ -7,13 +7,17 @@ import axios from "axios";
 import Product from "../../interface";
 import { useAppSelector } from "../../../app/hooks";
 import { sortByCount } from "../../functions";
+import { Stack } from "@mui/system";
+import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
+
 
 export default function TopCategoryAndProduct() {
   const Navigate = useNavigate();
-
   const allData = useAppSelector((state) => state.products);
-
+  const topFive = sortByCount(allData.products);
+  const url: CategoryUrls = urls
   const [data, setData] = useState<Product[] | undefined>();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -32,31 +36,29 @@ export default function TopCategoryAndProduct() {
     Navigate(`/categories/${cat}`);
   };
 
-  const topFive = sortByCount(allData.products);
 
   return (
-    <div>
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
-        {data?.map((obj: any, index: any) => (
-          <div>
+    <Stack sx={{ justifyContent: "center", alignItems: "center" }}>
+      <Typography variant="h3">Top Categories</Typography>
+      <Stack sx={{ display: "flex", flexDirection: "row", border: "2px black solid", width: "95%", justifyContent: "center", alignItems: "center" }}>
+        {data?.map((obj: Product, index: number) => (
+          <Stack key={index} sx={{ alignItems: "center" }}>
             <CategoryCard
-              key={index}
+              size={0}
+              url={url[obj.category]}
               category={obj.category}
               onClick={handleClick}
             />
             <Typography variant="h5">{obj.category}</Typography>
-          </div>
+          </Stack>
         ))}
-      </div>
-      <div
-        style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}
-      >
+      </Stack>
+      <Typography variant="h3">Top Product</Typography>
+      <Stack sx={{ display: "flex", flexDirection: "row",padding: "4px", border: "2px black solid"}}>
         {topFive.map((obj, index) => (
           <ProductCard product={obj} key={index} />
         ))}
-      </div>
-    </div>
+      </Stack>
+    </Stack>
   );
 }

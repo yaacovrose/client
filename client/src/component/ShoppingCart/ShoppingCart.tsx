@@ -1,5 +1,4 @@
 import "./shoppingCart.css";
-import Heder from "../Heder/Heder";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -11,13 +10,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Remove } from "@mui/icons-material";
 import AddIcon from "@mui/icons-material/Add";
 import Button from "@mui/material/Button";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 
 const ShoppingCart = () => {
 
   const cart = useAppSelector(state => state.cart.products)
 
-  const dispatch = useAppDispatch();
+ 
 
   const handlePurchase = () => {
     // console.log('Purchase completed:', cart);
@@ -26,7 +25,6 @@ const ShoppingCart = () => {
 
   return (
     <div>
-      <Heder />
       {cart.map((obj, index) => {
         const product = findProductById(obj.productId);
         const quantity = obj.quantity
@@ -34,7 +32,7 @@ const ShoppingCart = () => {
         return (
           <Card key={index} sx={{ maxWidth: 345 }}>
             <CardActionArea>
-              <CardMedia component="img" height="140" alt="green iguana" />
+              <CardMedia component="img" height="140" alt="green iguana" src={product!.image}/>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {product?.title}

@@ -8,7 +8,6 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   "& .MuiBadge-badge": {

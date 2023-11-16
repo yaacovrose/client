@@ -5,18 +5,18 @@ import "./productPage.css";
 import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Heder from "../Heder/Heder";
 import NestedModal from "../Heder/maps/Modal";
 
 export default function ProductPage() {
-  const [product, setProduct] = useState<Product | null | undefined>(null);
+  const [product, setProduct] = useState<Product | undefined>(undefined);
   const { id } = useParams();
   const data = useAppSelector((state) => state.products);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const newProduct = data.products.find((p) => p.id === parseInt(id));
-    setProduct(newProduct);
+    const newProduct: Product | undefined = data.products.find((p) => p.id === parseInt(id!));
+      setProduct(newProduct);
+    
   }, [id, data.products]);
 
   const comparePrices = () => {
@@ -33,7 +33,6 @@ export default function ProductPage() {
         <p>Loading...</p>
       ) : (
         <div className="page">
-          <Heder />
           <Button variant="contained" onClick={comparePrices}>
             Compare prices
           </Button>
@@ -48,10 +47,10 @@ export default function ProductPage() {
               <h4>Category</h4>
               <p>{product?.category}</p>
 
-              {product?.attribute.map((individual, index) => (
+              {product?.attributes?.map((individual, index) => (
                 <div key={index}>
-                  <h4>{individual.Description}</h4>
-                  <p>{individual.Details}</p>
+                  <h4>{individual.name}</h4>
+                  <p>{individual.value}</p>
                 </div>
               ))}
 
