@@ -9,13 +9,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFlag } from "../../app/flagSlice";
+import { setNameCart } from "../../app/cartSlice";
 
 export default function SignIn() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordVerification, setPasswordVerification] = React.useState("");
   const [userName, setUserName] = React.useState("");
-  console.log(email, password, userName);
   
 
   const dispatch = useAppDispatch();
@@ -52,7 +52,7 @@ export default function SignIn() {
         if (response.data) {
           dispatch(setFlag(false));
           localStorage.setItem("userName", userName);
-          // ................................
+          dispatch(setNameCart(userName))
         }
       } catch (error) {
         console.error("Error during registration:", error);

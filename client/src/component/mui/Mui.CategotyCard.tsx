@@ -1,7 +1,4 @@
-
 import Paper from "@mui/material/Paper";
-
-
 
 interface CategoryCardProps {
   size: number;
@@ -10,8 +7,7 @@ interface CategoryCardProps {
   onClick: (category: string) => void;
 }
 
-
-const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url }) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
   return (
     <Paper
       elevation={3}
@@ -30,7 +26,4 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url }) =
     ></Paper>
   );
 };
-
-
-
 export default CategoryCard;

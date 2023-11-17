@@ -45,6 +45,7 @@ export default function TopCategoryAndProduct() {
         {data?.map((obj: Product, index: number) => (
           <Stack key={index} sx={{alignItems: "center"}}>
           <CategoryCard
+          size={0}
             url={url[obj.category]}
             category={obj.category}
             onClick={handleClick}

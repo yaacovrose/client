@@ -9,6 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { useAppDispatch } from "../../app/hooks";
 import { setFlag, setName } from "../../app/flagSlice";
+import { fetchCartData } from "../../app/cartSlice";
 
 export default function LogIn() {
   const [open, setOpen] = React.useState(false);
@@ -53,8 +54,7 @@ export default function LogIn() {
         if (response.data) {
           const userName = response.data;
           dispatch(setName(userName));
-          // localStorage.removeItem("userName");
-          // localStorage.setItem("userName", userName);
+          dispatch(fetchCartData({ name:userName }));
         }
       } catch (error) {
         console.error("Error during registration:", error);
