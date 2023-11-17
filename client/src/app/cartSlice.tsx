@@ -85,7 +85,8 @@ export const fetchCartData = createAsyncThunk(
   'cart/fetchCartData',
   async (payload: FetchCartDataPayload, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`http://localhost:8181/api/cart/${payload.name}`);
+      // const response = await axios.get(`http://localhost:8181/api/cart/${payload.name}`);
+      const response = await axios.get(`https://api-store-f2id.onrender.com/api/cart/${payload.name}`);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -111,7 +112,8 @@ const cartSlice = createSlice({
       } else {
         state.products.push({ productId, quantity });
       }
-      axios.put(`http://localhost:8181/api/cart`, {
+      // axios.put(`http://localhost:8181/api/cart`, {
+      axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
         product: state.products,
@@ -125,7 +127,8 @@ const cartSlice = createSlice({
       if (existingProduct) {
         existingProduct.quantity += 1;
         if (state.userName !== "") {
-          axios.put(`http://localhost:8181/api/cart`, {
+          // axios.put(`http://localhost:8181/api/cart`, {
+          axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
             _id: state._id,
             userName: state.userName,
             product: state.products,
@@ -141,7 +144,8 @@ const cartSlice = createSlice({
       if (existingProduct && existingProduct.quantity > 0) {
         existingProduct.quantity -= 1;
         if (state.userName !== "") {
-          axios.put(`http://localhost:8181/api/cart`, {
+          // axios.put(`http://localhost:8181/api/cart`, {
+          axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
             _id: state._id,
             userName: state.userName,
             product: state.products,
@@ -151,7 +155,8 @@ const cartSlice = createSlice({
     },
     setNameCart: (state, action) => {
       state.userName = action.payload;
-      axios.put(`http://localhost:8181/api/cart`, {
+      // axios.put(`http://localhost:8181/api/cart`, {
+      axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
         product: state.products,
@@ -165,7 +170,8 @@ const cartSlice = createSlice({
       state.products = updatedProducts;
       if (state.userName !== "") {
         console.log(state.userName);
-        axios.put(`http://localhost:8181/api/cart`, {
+        // axios.put(`http://localhost:8181/api/cart`, {
+        axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
           _id: state._id,
           userName: state.userName,
           product: state.products,
@@ -175,7 +181,8 @@ const cartSlice = createSlice({
   purchase: (state) => {
     state.products = []
     if (state.userName !== "") {
-      axios.put(`http://localhost:8181/api/cart`, {
+      // axios.put(`http://localhost:8181/api/cart`, {
+      axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
         product: state.products,
