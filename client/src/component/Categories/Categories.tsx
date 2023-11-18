@@ -32,7 +32,7 @@ const Categories = () => {
           }
         } else {
           const attribute = product.attributes?.find(
-            (attribute) => attribute.name === key && attribute.value === value
+            (attribute) => attribute.key === key && attribute.value === value
           );
           if (!attribute) {
             return false;

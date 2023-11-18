@@ -12,7 +12,6 @@ export default function ComparePrices() {
   localStorage.removeItem("compare1");
   localStorage.removeItem("compare2");
 
-
   const data = useAppSelector((state) => state.products);
 
   const product1 = data.products.find((p) => p.id === Number(id1));

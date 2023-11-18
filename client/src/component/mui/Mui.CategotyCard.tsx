@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 interface CategoryCardProps {
   size: number;
   category: string;
-  url: string;
+  url: string | number;
   onClick: (category: string) => void;
 }
 

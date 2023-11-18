@@ -36,9 +36,6 @@ export default function TopCategoryAndProduct() {
     Navigate(`/categories/${cat}`);
   };
 
-
-
-
   return (
     <Stack sx={{justifyContent: "center", alignItems: "center"}}>
         <Typography variant="h3">Top Categories</Typography>

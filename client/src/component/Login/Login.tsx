@@ -47,16 +47,21 @@ export default function LogIn() {
           email: email,
           password: password,
         };
+
         const response = await axios.post(
           // "http://localhost:8181/api/users/login",
           "https://api-store-f2id.onrender.com/api/users/login",
           userData
         );
+
         if (response.data) {
           const userName = response.data;
-          dispatch(setName(userName));
-          dispatch(fetchCartData({ name:userName }));
+          if (userName !== "No user with this email in the database!" && userName !== "The email or password is incorrect!" && response.status < 400) {
+            dispatch(setName(userName));
+            dispatch(fetchCartData({ name: userName }));
+          }
         }
+
       } catch (error) {
         console.error("Error during registration:", error);
         dispatch(setFlag(true));

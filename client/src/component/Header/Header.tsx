@@ -8,9 +8,10 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { Button, Stack, Typography } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { setName } from "../../app/flagSlice";
 
 
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
@@ -25,6 +26,7 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 export default function Header() {
   const [quantity, setQuantity] = useState<number>(0);
   const userName = useAppSelector((state) => state.flag.name)
+  const dispatch = useAppDispatch()
 
   const Navigate = useNavigate();
 
@@ -44,9 +46,8 @@ export default function Header() {
 
 
   const handleSignOut = () => {
-    localStorage.removeItem("userName");
+    dispatch(setName(''))
   };
-
 
   return (
     <div className="header" style={{ justifyContent: "space-between", alignItems: "center", display: "flex" }}>
@@ -55,7 +56,6 @@ export default function Header() {
         <SignIn />
         <Button onClick={handleSignOut}>Sign Out</Button>
       </Stack>
-
 
       <Stack sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
         <Stack direction="row" spacing={3}>

@@ -73,14 +73,17 @@ interface CartProduct {
   productId: number;
   quantity: number;
 }
+
 interface CartState {
   _id?:string
   userName: string;
   products: CartProduct[];
 }
+
 interface FetchCartDataPayload {
   name: string;
 }
+
 export const fetchCartData = createAsyncThunk(
   'cart/fetchCartData',
   async (payload: FetchCartDataPayload, { rejectWithValue }) => {
@@ -193,18 +196,21 @@ const cartSlice = createSlice({
     builder.addCase(fetchCartData.fulfilled, (state, action) => {
       const { userName, product } = action.payload[0];
       state.userName = userName;
-      product.forEach((product:CartProduct) => {
+      product.forEach((product: CartProduct) => {
         const existingProductIndex = state.products.findIndex(
           (existingProduct) => existingProduct.productId === product.productId
         );
+
         if (existingProductIndex !== -1) {
           state.products[existingProductIndex].quantity += product.quantity;
         } else {
           state.products.push(product);
         }
+        
       });
     });
   },
 });
+
 export const { setNameCart, increment, decrement, addProduct,deleteProduct,purchase } = cartSlice.actions;
 export default cartSlice.reducer;

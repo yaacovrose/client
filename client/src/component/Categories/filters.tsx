@@ -25,14 +25,14 @@ const Filters = ({ products }: { products: Product[] }) => {
   const newObject: Record<string, (string | number)[]> = products?.reduce(
     (acc: Record<string, (string | number)[]>, product) => {
       const productAttributes: Attribute[] = product.attributes ? product.attributes : []
-      productAttributes.forEach(({ name, value }) => {
-        if (!acc[name]) {
-          acc[name] = [];
+      productAttributes.forEach(({ key, value }) => {
+        if (!acc[key]) {
+          acc[key] = [];
         }
-        if (!acc[name].includes(value)) {
-          acc[name].push(value);
+        if (!acc[key].includes(value)) {
+          acc[key].push(value);
         }
-        acc[name].sort((a, b) => {
+        acc[key].sort((a, b) => {
           if (typeof a === "number" && typeof b === "number") {
             return a - b;
           }

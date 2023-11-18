@@ -1,4 +1,3 @@
-// import { width } from '@mui/system'
 import './App.css'
 import ErrorBoundary from './component/Error'
 import MyRouter from './component/Router/MyRouters'

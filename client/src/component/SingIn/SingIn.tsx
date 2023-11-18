@@ -52,8 +52,11 @@ export default function SignIn() {
         );
         if (response.data) {
           dispatch(setFlag(false));
+          if (userName !== "No user with this email in the database!" && userName !== "The email or password is incorrect!" && response.status < 400) {
+
           localStorage.setItem("userName", userName);
           dispatch(setNameCart(userName))
+          }
         }
       } catch (error) {
         console.error("Error during registration:", error);
