@@ -36,7 +36,7 @@ export const sortByCount = (products: Product[]): Product[] => {
       }
     }
   }
-  const topFive = sortedProducts.slice(0, 5);
+  const topFive = sortedProducts.slice(0, 4);
 
   return topFive;
 };

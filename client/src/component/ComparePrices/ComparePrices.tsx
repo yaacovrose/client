@@ -2,6 +2,7 @@ import "./comparePrices.css";
 import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import ProductCard  from "../mui/Mui.ProductCard";
+import Button from "@mui/material/Button";
 
 export default function ComparePrices() {
   const navigate = useNavigate();

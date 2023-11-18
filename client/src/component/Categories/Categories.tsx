@@ -31,7 +31,7 @@ const Categories = () => {
             if (product.price > value) return false;
           }
         } else {
-          const attribute = product.attributes.find(
+          const attribute = product.attributes!.find(
             (attribute) => attribute.name === key && attribute.value === value
           );
           if (!attribute) {
@@ -52,7 +52,7 @@ const Categories = () => {
   return (
     <main>
       <div className="page">
-        {products && <Filters products={products} />}
+        {products && <Filters  products={products} />}
         <div
           id="cards"
           style={{
