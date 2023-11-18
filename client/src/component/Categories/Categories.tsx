@@ -31,8 +31,8 @@ const Categories = () => {
             if (product.price > value) return false;
           }
         } else {
-          const attribute = product.attributes!.find(
-            (attribute) => attribute.name === key && attribute.value === value
+          const attribute = product.attributes?.find(
+            (attribute) => attribute.key === key && attribute.value === value
           );
           if (!attribute) {
             return false;
@@ -49,6 +49,7 @@ const Categories = () => {
       if (x) setFilterProducts(x);
     }
   }, [log]);
+
   return (
     <main>
       <div className="page">
@@ -70,3 +71,5 @@ const Categories = () => {
   );
 };
 export default Categories;
+
+

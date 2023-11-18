@@ -9,13 +9,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { setFlag } from "../../app/flagSlice";
+import { setNameCart } from "../../app/cartSlice";
 
 export default function SignIn() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [passwordVerification, setPasswordVerification] = React.useState("");
   const [userName, setUserName] = React.useState("");
-  console.log(email, password, userName);
   
 
   const dispatch = useAppDispatch();
@@ -46,13 +46,17 @@ export default function SignIn() {
         console.log(userData);
         
         const response = await axios.post(
-          "http://localhost:8181/api/users",
+          // "http://localhost:8181/api/users",
+          "https://api-store-f2id.onrender.com/api/users",
           userData
         );
         if (response.data) {
           dispatch(setFlag(false));
+          if (userName !== "No user with this email in the database!" && userName !== "The email or password is incorrect!" && response.status < 400) {
+
           localStorage.setItem("userName", userName);
-          // ................................
+          dispatch(setNameCart(userName))
+          }
         }
       } catch (error) {
         console.error("Error during registration:", error);

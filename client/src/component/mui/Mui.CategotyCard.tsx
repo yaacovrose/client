@@ -17,7 +17,7 @@ const CategoryCardPaper = styled(Paper)(({ theme }) => ({
 interface CategoryCardProps {
   size: number;
   category: string;
-  url: string;
+  url: string | number;
   onClick: (category: string) => void;
 }
 

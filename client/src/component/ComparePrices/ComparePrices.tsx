@@ -2,7 +2,7 @@ import "./comparePrices.css";
 import { useAppSelector } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import ProductCard  from "../mui/Mui.ProductCard";
-import Button from "@mui/material/Button";
+import { Button } from "@mui/material";
 
 export default function ComparePrices() {
   const navigate = useNavigate();
@@ -11,7 +11,6 @@ export default function ComparePrices() {
   const id2 = localStorage.getItem("compare2");
   localStorage.removeItem("compare1");
   localStorage.removeItem("compare2");
-
 
   const data = useAppSelector((state) => state.products);
 

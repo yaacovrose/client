@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   FormControl,
@@ -16,31 +16,29 @@ import Filter from "../interfaces/Filter";
 
 const Filters = ({ products }: { products: Product[] }) => {
   const dispatch = useAppDispatch();
-
   const [selectedFilters, setSelectedFilters] = useState<
     Record<string, string | number | undefined>
   >({});
+
   const [value, setValue] = useState<string | number>("");
 
   const newObject: Record<string, (string | number)[]> = products?.reduce(
     (acc: Record<string, (string | number)[]>, product) => {
-      const productAttributes: Attribute[] = product.attributes;
-
-      productAttributes.forEach(({ name, value }) => {
-        if (!acc[name]) {
-          acc[name] = [];
+      const productAttributes: Attribute[] = product.attributes ? product.attributes : []
+      productAttributes.forEach(({ key, value }) => {
+        if (!acc[key]) {
+          acc[key] = [];
         }
-        if (!acc[name].includes(value)) {
-          acc[name].push(value);
+        if (!acc[key].includes(value)) {
+          acc[key].push(value);
         }
-        acc[name].sort((a, b) => {
+        acc[key].sort((a, b) => {
           if (typeof a === "number" && typeof b === "number") {
             return a - b;
           }
           return a.toString().localeCompare(b.toString());
         });
       });
-
       return acc;
     },
     {}
@@ -53,22 +51,19 @@ const Filters = ({ products }: { products: Product[] }) => {
     }),
     { minPrice: Infinity, maxPrice: -Infinity }
   ) ?? { minPrice: 0, maxPrice: 0 };
-
-  const handleChangePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value === "" ? 0 : Number(event.target.value));
+  const handleChangePrice = (value: number | number[]) => {
+    setValue(typeof value === "number" ? value : 0);
     const updatedFilters = {
       ...selectedFilters,
-      price: event.target.value === "" ? 0 : Number(event.target.value),
+      price: typeof value === "number" ? value : 0,
     };
     setSelectedFilters(updatedFilters);
     dispatch(setFilter(updatedFilters));
   };
-
   const log = useAppSelector((state) => state.filter.filter);
   useEffect(() => {
     console.log(log);
   }, [log]);
-
   const handleChange = (value: string | number, title: string) => {
     const updatedFilters: Filter = { ...selectedFilters, [title]: value };
     for (const key in updatedFilters) {
@@ -79,7 +74,6 @@ const Filters = ({ products }: { products: Product[] }) => {
     setSelectedFilters(updatedFilters);
     dispatch(setFilter(updatedFilters));
   };
-
   return (
     <div style={{ display: "flex", flexWrap: "wrap" }}>
       <Box sx={{ width: 300 }}>
@@ -88,7 +82,7 @@ const Filters = ({ products }: { products: Product[] }) => {
           value={typeof value === "number" ? value : maxPrice}
           min={minPrice}
           max={maxPrice}
-          onChange={(e) => handleChangePrice(e)}
+          onChange={(_e, value) => handleChangePrice(value)}
           aria-labelledby="dynamic-range-slider"
           valueLabelDisplay="auto"
         />

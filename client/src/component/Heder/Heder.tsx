@@ -1,4 +1,3 @@
-import "./heder.css";
 import Login from "../Login/Login";
 import SignIn from "../SingIn/SingIn";
 import IconButton from "@mui/material/IconButton";
@@ -42,9 +41,6 @@ export default function Header() {
           <ShoppingCartIcon  />
         </StyledBadge>
       </IconButton>
-
-  
-    
     </div>
   );
 }

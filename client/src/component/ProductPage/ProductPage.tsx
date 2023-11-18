@@ -57,7 +57,7 @@ export default function ProductPage() {
 
               {product?.attributes?.map((individual, index) => (
                 <div key={index}>
-                  <h4>{individual.name}</h4>
+                  <h4>{individual.key}</h4>
                   <p>{individual.value}</p>
                 </div>
               ))}

@@ -11,7 +11,8 @@ export function connectToData() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8181/api/products"
+          // "http://localhost:8181/api/products"
+          "https://api-store-f2id.onrender.com/api/products"
         );
         dispatch(setProducts(response.data));
       } catch (error) {
