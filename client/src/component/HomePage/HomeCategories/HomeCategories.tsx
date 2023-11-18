@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import "./homeCategories.css";
 import { useAppSelector } from "../../../app/hooks";
 import Product from "../../interface";
 import CategoryCard from "../../mui/Mui.CategotyCard";
@@ -30,16 +29,17 @@ export default function HomeCategories() {
   return (
     <Stack id="category" flexDirection={"column"} borderRight={"solid"} padding={"16px"}>
       {uniqueProductsByCategory.map((obj, index) => (
-        <Stack spacing={2} alignItems={"center"} display={"flex"} flexDirection={"row"}>
+        <Stack key={index} spacing={2} alignItems={"center"} display={"flex"} >
             <CategoryCard
-              size={160}
+              size={1}
               key={index}
               category={obj.category}
               url={url[obj.category]}
-              onClick={handleClick}
+              onClick={()=>handleClick(obj.category)}
             />
           <Stack >
-            <Typography variant="h4">{obj.category}</Typography>
+            <Typography onClick={()=>handleClick(obj.category)}
+             style={{marginBottom:'15px'}} variant="h6">{obj.category}</Typography>
           </Stack>
         </Stack>
       ))}

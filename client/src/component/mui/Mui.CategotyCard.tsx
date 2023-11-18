@@ -1,4 +1,18 @@
 import Paper from "@mui/material/Paper";
+import { styled } from "@mui/system";
+
+const CategoryCardPaper = styled(Paper)(({ theme }) => ({
+  borderRadius: "50%",
+  margin: 16,
+  marginBottom:'5px',
+  textAlign: "center",
+  cursor: "pointer",
+  transition: "transform 0.3s, box-shadow 0.3s",
+  "&:hover": {
+    transform: "scale(1.2)",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+  },
+}));
 
 interface CategoryCardProps {
   size: number;
@@ -9,21 +23,18 @@ interface CategoryCardProps {
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
   return (
-    <Paper
+    <CategoryCardPaper
       elevation={3}
       style={{
-        width: size !== 0 ? "50px" : "160px",
-        height: size !== 0 ? "50px" : "160px",
-        borderRadius: "50%",
-        margin: 16,
-        textAlign: "center",
-        cursor: "pointer",
+        width: size !== 0 ? "60px" : "160px",
+        height: size !== 0 ? "60px" : "160px",
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
-        backgroundPosition: "center"
+        backgroundPosition: "center",
       }}
       onClick={() => onClick(category)}
-    ></Paper>
+    ></CategoryCardPaper>
   );
 };
+
 export default CategoryCard;

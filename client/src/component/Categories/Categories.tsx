@@ -53,7 +53,7 @@ const Categories = () => {
   return (
     <main>
       <div className="page">
-        {products && <Filters products={products} />}
+        {products && <Filters  products={products} />}
         <div
           id="cards"
           style={{
