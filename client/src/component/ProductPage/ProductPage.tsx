@@ -84,14 +84,11 @@ import Product from "../interfaces/Product";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-<<<<<<< HEAD
-=======
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { addProduct } from "../../app/cartSlice";
->>>>>>> 20d7cd6ffa9dd80ba9516396a6035e9eec6ce71a
 import NestedModal from "../maps/Modal";
 
 export default function ProductPage() {

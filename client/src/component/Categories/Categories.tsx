@@ -22,12 +22,12 @@ const Categories = () => {
   useEffect(() => {
     getProducts();
   }, [data.products]);
-  
+
   const applyFilter = (products: Product[], filter: Filter): Product[] => {
     return products.filter((product) => {
       for (const [key, value] of Object.entries(filter)) {
-        if (key === 'price') {
-          if(typeof value === 'number'){
+        if (key === "price") {
+          if (typeof value === "number") {
             if (product.price > value) return false;
           }
         } else {
@@ -44,32 +44,29 @@ const Categories = () => {
   };
   const log = useAppSelector((state) => state.filter.filter);
   useEffect(() => {
-    if(products){
+    if (products) {
       const x = applyFilter(products, log);
       if (x) setFilterProducts(x);
     }
   }, [log]);
 
   return (
-    <main>
-      <div className="page">
-        {products && <Filters  products={products} />}
-        <div
-          id="cards"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            flexWrap: "wrap",
-          }}
-        >
-          {filterProducts?.map((obj, index) => (
-            <ProductCard product={obj} key={index} />
-          ))}
-        </div>
+    <div className="page" style={{ width: "100vw", display: "flex", justifyContent: "center", margin: "4rem 2rem 6rem 2rem" }}>
+      {products && <Filters products={products} />}
+      <div
+        id="cards"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          width: "80vw"
+        }}
+      >
+        {filterProducts?.map((obj, index) => (
+          <ProductCard product={obj} key={index} />
+        ))}
       </div>
-    </main>
+    </div>
   );
 };
 export default Categories;
-
-

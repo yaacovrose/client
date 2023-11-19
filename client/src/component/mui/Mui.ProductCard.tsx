@@ -37,6 +37,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       sx={{
         margin: '15px',
         width: "100%",
+        maxWidth:'230px',
         borderRadius: "10px",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
         transition: "box-shadow 0.3s, transform 0.3s",
