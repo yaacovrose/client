@@ -8,7 +8,7 @@ function App() {
   return (
     <div className='app' style={{ justifyContent: "center", alignItems: "center" }}>
       <ErrorBoundary>
-      <MyRouter/>
+      <MyRouter />
       </ErrorBoundary>
     </div>
   )
