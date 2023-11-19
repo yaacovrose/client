@@ -75,7 +75,7 @@ const Filters = ({ products }: { products: Product[] }) => {
     dispatch(setFilter(updatedFilters));
   };
   return (
-    <div style={{ display: "flex", flexWrap: "wrap" }}>
+    <div style={{ display: "flex", flexWrap: "wrap", width: '20vw'}}>
       <Box sx={{ width: 300 }}>
         <Slider
           aria-label="Default"

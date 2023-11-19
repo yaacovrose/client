@@ -1,3 +1,4 @@
+import "./TopCategory.css"
 import CategoryCard from "../../mui/Mui.CategotyCard";
 import ProductCard from "../../mui/Mui.ProductCard";
 import Typography from "@mui/material/Typography";
