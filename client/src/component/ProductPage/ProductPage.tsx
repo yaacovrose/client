@@ -6,7 +6,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { addProduct } from "../../app/cartSlice";
-import NestedModal from "../Heder/maps/Modal";
+import NestedModal from "../maps/Modal";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | undefined>(undefined);

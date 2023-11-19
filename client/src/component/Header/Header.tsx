@@ -27,8 +27,8 @@ const Search = styled("div")(({ theme }) => ({
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: "auto",
-  marginRight: "auto", // Centered search bar
-  width: "50%", // Adjusted width
+  marginRight: "auto",
+  width: "50%",
   [theme.breakpoints.up("sm")]: {
     marginLeft: theme.spacing(1),
     width: "auto",
@@ -97,7 +97,7 @@ export default function Header() {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            marginX: 2, // Added spacing between icons
+            marginX: 2,
           }}
         >
           <Stack direction="row" spacing={3}>
