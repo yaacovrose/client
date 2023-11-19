@@ -4,7 +4,7 @@ import Product from "../../interface";
 import CategoryCard from "../../mui/Mui.CategotyCard";
 import Typography from "@mui/material/Typography";
 import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
-import Carousel from 'react-multi-carousel';
+// import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css'; 
 import './homeCategoy.css'
 
@@ -28,26 +28,27 @@ export default function HomeCategories() {
     Navigate(`/categories/${cat}`);
   };
 
-  const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 5,
-      slidesToSlide: 4,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-      slidesToSlide: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1, 
-    },
-  };
+  // const responsive = {
+  //   desktop: {
+  //     breakpoint: { max: 3000, min: 1024 },
+  //     items: 5,
+  //     slidesToSlide: 4,
+  //   },
+  //   tablet: {
+  //     breakpoint: { max: 1024, min: 464 },
+  //     items: 2,
+  //     slidesToSlide: 2,
+  //   },
+  //   mobile: {
+  //     breakpoint: { max: 464, min: 0 },
+  //     items: 1,
+  //     slidesToSlide: 1, 
+  //   },
+  // };
 
   return (
-    <Carousel  responsive={responsive} infinite={true}>
+    // <Carousel  responsive={responsive} infinite={true}>
+    <div style={{display: "flex"}}>
       {uniqueProductsByCategory.map((cat, index) => (
         <div>
         <div key={index} onClick={() => handleClick(cat.category)}>
@@ -63,7 +64,8 @@ export default function HomeCategories() {
           </Typography>
           </div>
       ))}
-    </Carousel>
+      </div>
+    // </Carousel>
     
   );
 }
