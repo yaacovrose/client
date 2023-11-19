@@ -2,7 +2,6 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/system";
 
 const CategoryCardPaper = styled(Paper)(({ theme }) => ({
-  borderRadius: "50%",
   margin: 16,
   marginBottom:'5px',
   textAlign: "center",
@@ -28,6 +27,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, siz
       style={{
         width: size !== 0 ? "60px" : "160px",
         height: size !== 0 ? "60px" : "160px",
+        borderRadius: "50%",
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

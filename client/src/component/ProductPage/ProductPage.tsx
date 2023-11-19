@@ -6,6 +6,7 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import { addProduct } from "../../app/cartSlice";
+import NestedModal from "../Heder/maps/Modal";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | undefined>(undefined);
@@ -41,9 +42,6 @@ export default function ProductPage() {
         <p>Loading...</p>
       ) : (
         <div className="page">
-          <Button variant="contained" onClick={comparePrices}>
-            Compare prices
-          </Button>
           <div id="onlyTripCard" key={product?.id}>
             <div>
               <h4>Title</h4>
@@ -68,9 +66,13 @@ export default function ProductPage() {
           </div>
         </div>
       )}
+          <Button variant="contained" onClick={comparePrices}>
+            Compare prices
+          </Button>
       <Button variant="contained" onClick={addToCart}>
         add to cart
       </Button>
+      <NestedModal/>
     </main>
   );
 }
