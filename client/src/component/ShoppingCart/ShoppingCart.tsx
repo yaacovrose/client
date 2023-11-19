@@ -1,5 +1,4 @@
 import "./shoppingCart.css";
-import Heder from "../Heder/Heder";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
