@@ -57,7 +57,7 @@ export default function TopCategoryAndProduct() {
               category={obj.category}
               onClick={handleClick}
             />
-            <Typography variant="h5" onClick={() => handleClick(obj.category)}>
+            <Typography variant="h6"  onClick={() => handleClick(obj.category)}>
               {obj.category}
             </Typography>
           </Stack>

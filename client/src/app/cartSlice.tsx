@@ -1,71 +1,3 @@
-// import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-// interface CartProduct {
-//   productId: number;
-//   quantity: number;
-// }
-
-// interface CartState {
-//   userId: string;
-//   products: CartProduct[];
-// }
-
-// const initialState: CartState = {
-//   userId: "",
-//   products: [],
-// };
-
-// const cartSlice = createSlice({
-//   name: "cart",
-//   initialState,
-//   reducers: {
-//     addProduct: (state, action: PayloadAction<CartProduct>) => {
-//       const { productId, quantity } = action.payload;
-//       const existingProduct = state.products.find(
-//         (product) => product.productId === productId
-//       );
-//       if (existingProduct) {
-//         existingProduct.quantity += 1;
-//       } else {
-//         state.products.push({ productId, quantity });
-//       }
-//     },
-//     increment: (state, action) => {
-//       const productId = action.payload;
-//       const existingProduct = state.products.find(
-//         (product) => product.productId === productId
-//       );
-//       if (existingProduct) {
-//         existingProduct.quantity += 1;
-//       }
-//     },
-
-//     decrement: (state, action) => {
-//       const productId = action.payload;
-//       const existingProduct = state.products.find(
-//         (product) => product.productId === productId
-//       );
-//       if (existingProduct && existingProduct.quantity > 0) {
-//         existingProduct.quantity -= 1;
-//       }
-//     },
-
-//     setCart: (state, action: PayloadAction<CartProduct[]>) => {
-//       state.products = action.payload;
-//     },
-    
-//     deleteProduct: (state, action) => {
-//       const productIdToDelete = action.payload;
-//       state.products = state.products.filter(
-//         (product) => product.productId !== productIdToDelete
-//       );
-//     },
-//   },
-// });
-
-// export const { setCart, increment, decrement, addProduct } = cartSlice.actions;
-// export default cartSlice.reducer;
-
 import { createSlice, PayloadAction,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 interface CartProduct {
@@ -159,8 +91,10 @@ const cartSlice = createSlice({
         _id: state._id,
         userName: state.userName,
         product: state.products,
+        
       });
     },
+
     deleteProduct: (state, action) => {
       const productIdToDelete = action.payload;
       const updatedProducts = state.products.filter(
@@ -190,7 +124,7 @@ const cartSlice = createSlice({
 
   extraReducers: (builder) => {
     builder.addCase(fetchCartData.fulfilled, (state, action) => {
-      const { userName, product } = action.payload[0];
+      const { userName, product } = action.payload[0]
       state.userName = userName;
       product.forEach((product: CartProduct) => {
         const existingProductIndex = state.products.findIndex(

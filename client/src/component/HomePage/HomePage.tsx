@@ -7,7 +7,7 @@ export default function HomePage(){
     
     return(
         <Stack spacing={0} sx={{display: "flex"}}>
-            <HomeCategories/>
+            <HomeCategories />
             <TopCategoryAndProduct/>
         </Stack>
     )
