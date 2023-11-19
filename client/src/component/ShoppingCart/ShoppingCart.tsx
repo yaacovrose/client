@@ -66,7 +66,6 @@
 // export default ShoppingCart;
 
 import "./shoppingCart.css";
-import Heder from "../Heder/Heder";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -87,7 +86,6 @@ const ShoppingCart = () => {
   
   return (
     <div>
-      <Heder />
       {cart.products.map((obj, index) => {
         const product = data.products.find(product => product.id === obj.productId);
         const quantity = obj.quantity
