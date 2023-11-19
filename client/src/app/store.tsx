@@ -2,13 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import productsReducer from './dataSlice'
 import flagReducer from './flagSlice'
 import cartReducer from './cartSlice'
+import filterReducer from './filterSlice'
 
 export const store = configureStore({
   reducer: {
     products: productsReducer,
     flag: flagReducer,
-    cart: cartReducer
-
+    cart: cartReducer,
+    filter: filterReducer
   },
 });
 

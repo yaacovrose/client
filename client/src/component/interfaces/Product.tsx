@@ -11,6 +11,6 @@ export default interface Product {
 }
 
 export interface Attribute {
-  name: string;
+  key: string;
   value: number | string;
 }

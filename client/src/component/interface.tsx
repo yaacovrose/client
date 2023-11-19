@@ -11,6 +11,6 @@ export default interface Product {
   }
 
   interface Attribute {
-    Description: string;
-    Details: number | string;
+    name: string;
+    value: number | string;
   }
