@@ -4,12 +4,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #2196f3; /* כחול כהה */
+    background-color: #2196f3;
     color: #ff9800;
   }
   
   .header button {
-    background-color: #64b5f6; /* כחול בהיר */
+    background-color: #64b5f6;
     color: #ff9800;
     font-weight:bold
     border: none;
@@ -20,10 +20,10 @@
   }
   
   .header button:hover {
-    background-color: #1976d2; /* כחול כהה יותר בעת העטפת */
+    background-color: #1976d2;
   }
   
-  /* עיצוב יותר מודרני לאייקונים */
+  
   .header svg {
     font-size: 24px;
     cursor: pointer;
@@ -31,13 +31,12 @@
 
   }
   
-  /* עיצוב לסימן השולף בתיק הקניות */
   .header .MuiBadge-badge {
     right: -5px;
     top: 0;
     border: 2px solid #ff9800;
     padding: 0 5px;
-    background-color: #f50057; /* כחול כהה */
+    background-color: #f50057; 
   }
   
 

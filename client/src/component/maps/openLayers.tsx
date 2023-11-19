@@ -70,10 +70,12 @@ const ShopMap: React.FC = () => {
     return markerElement;
   };
   return (
-    <div ref={mapRef} style={{ width: '100%', height: '400px' }}>
-      <div style={{ position: 'absolute', top: '10px', left: '300px', margin: '8px', display: dialogText ? 'block' : 'none' }}>
+    <div ref={mapRef} style={{ width: '100%', height: '400px', position: 'relative' }}>
+      <div style={{ position: 'absolute', top: '5px', left: '200px', margin: '4px', display: dialogText ? 'block' : 'none' }}>
       </div>
-        <div>{dialogText}</div>
+      <div style={{ padding: '2px', backgroundColor: '#FFFFFF', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
+        {dialogText}
+      </div>
     </div>
   );
 };

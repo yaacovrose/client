@@ -23,7 +23,6 @@ export default function TopCategoryAndProduct() {
       try {
         const response = await axios.get(
           "https://api-store-f2id.onrender.com/api/products/topcategory"
-          // "http://localhost:8181/api/products/topcategory"
         );
         setData(response.data);
       } catch (error) {
