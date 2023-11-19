@@ -1,3 +1,4 @@
+// HomeCategories.tsx
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../app/hooks";
 import Product from "../../interface";
@@ -6,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
 import Slide from "@mui/material/Slide";
+import "./homeCategoy.css"; // Import the CSS file with keyframes
 
 export default function HomeCategories() {
   const data = useAppSelector((state) => state.products);
@@ -28,8 +30,8 @@ export default function HomeCategories() {
   const url: CategoryUrls = urls;
 
   return (
-    <Slide in={true} direction="right" timeout={10000}>
-      <Stack sx={{ flexWrap: "wrap", height:'50' }} id="category" flexDirection={"row"} borderRight={"solid"} padding={"16px"}>
+    <Slide in={true} direction="right" timeout={1000}>
+      <Stack className="slider" sx={{ flexWrap: "wrap", border: "solid 1px black" }} id="category" flexDirection={"row"} borderRight={"solid"} padding={"16px"}>
         {uniqueProductsByCategory.map((obj, index) => (
           <Stack sx={{ marginLeft: "12px" }} key={index} spacing={2} alignItems={"center"} display={"flex"}>
             <CategoryCard size={0} key={index} category={obj.category} url={url[obj.category]} onClick={() => handleClick(obj.category)} />
