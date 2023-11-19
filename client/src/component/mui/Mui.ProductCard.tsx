@@ -125,7 +125,7 @@
 // export default ProductCard;
 
 
-import { Grid, Card, CardActionArea, CardContent, CardMedia, Typography, IconButton, Stack } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardMedia, Typography, IconButton, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Product from "../interface";
 import { useAppDispatch } from "../../app/hooks";
@@ -162,7 +162,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       sx={{
         margin: '15px',
         width: "100%",
-        maxWidth:'230px',
+        maxWidth: '230px',
         borderRadius: "10px",
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
         transition: "box-shadow 0.3s, transform 0.3s",
@@ -189,10 +189,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </Typography>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Typography variant="h6">${product.price}</Typography>
-            <IconButton    sx={{"&:hover": {
-              backgroundColor: "#1976d2",
-            color:'white'},}}
-     onClick={(e) => { e.stopPropagation(); dispatch(addProduct(addToCart)); }} color="primary">
+            <IconButton sx={{
+              "&:hover": {
+                backgroundColor: "#1976d2",
+                color: 'white'
+              },
+            }}
+              onClick={(e) => { e.stopPropagation(); dispatch(addProduct(addToCart)); }} color="primary">
               <AddShoppingCartIcon />
             </IconButton>
           </Stack>
