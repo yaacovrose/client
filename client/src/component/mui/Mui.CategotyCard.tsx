@@ -23,11 +23,11 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({ category, onClick, url, size }) => {
   return (
     <CategoryCardPaper
-      elevation={3}
+      elevation={5}
       style={{
-        width: size !== 0 ? "60px" : "160px",
-        height: size !== 0 ? "60px" : "160px",
-        borderRadius: "50%",
+        width: size !== 0 ? "90px" : "160px",
+        height: size !== 0 ? "90px" : "160px",
+        borderRadius: size !== 0 ? "12%":"50%",
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
         backgroundPosition: "center",

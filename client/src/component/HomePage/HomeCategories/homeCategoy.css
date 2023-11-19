@@ -1,0 +1,6 @@
+.Slider{
+  margin: 20px;
+}
+.react-multi-carousel-item {
+  flex-wrap: wrap; 
+}

@@ -3,9 +3,10 @@ import { useAppSelector } from "../../../app/hooks";
 import Product from "../../interface";
 import CategoryCard from "../../mui/Mui.CategotyCard";
 import Typography from "@mui/material/Typography";
-import { Stack } from "@mui/material";
 import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
-import Slide from "@mui/material/Slide";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css'; 
+import './homeCategoy.css'
 
 export default function HomeCategories() {
   const data = useAppSelector((state) => state.products);
@@ -19,28 +20,50 @@ export default function HomeCategories() {
       uniqueProductsByCategory.push(product);
     }
   });
+
   const Navigate = useNavigate();
+  const url: CategoryUrls = urls;
 
   const handleClick = (cat: string) => {
     Navigate(`/categories/${cat}`);
   };
 
-  const url: CategoryUrls = urls;
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 5,
+      slidesToSlide: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1, 
+    },
+  };
 
   return (
-    <Slide in={true} direction="right" timeout={10000}>
-      <Stack sx={{ flexWrap: "wrap", height:'50' }} id="category" flexDirection={"row"} borderRight={"solid"} padding={"16px"}>
-        {uniqueProductsByCategory.map((obj, index) => (
-          <Stack sx={{ marginLeft: "12px" }} key={index} spacing={2} alignItems={"center"} display={"flex"}>
-            <CategoryCard size={0} key={index} category={obj.category} url={url[obj.category]} onClick={() => handleClick(obj.category)} />
-            <Stack>
-              <Typography onClick={() => handleClick(obj.category)} style={{ marginBottom: "15px" }} variant="h6">
-                {obj.category}
-              </Typography>
-            </Stack>
-          </Stack>
-        ))}
-      </Stack>
-    </Slide>
+    <Carousel  responsive={responsive} infinite={true}>
+      {uniqueProductsByCategory.map((cat, index) => (
+        <div>
+        <div key={index} onClick={() => handleClick(cat.category)}>
+          <CategoryCard 
+            category={cat.category}
+            url={url[cat.category]} 
+            size={0} 
+            onClick={() => handleClick(cat.category)}
+          />
+        </div>
+          <Typography >
+            {cat.category}
+          </Typography>
+          </div>
+      ))}
+    </Carousel>
+    
   );
 }
