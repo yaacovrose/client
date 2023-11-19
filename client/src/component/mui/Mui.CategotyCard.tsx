@@ -1,7 +1,7 @@
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/system";
 
-const CategoryCardPaper = styled(Paper)(({ theme }) => ({
+const CategoryCardPaper = styled(Paper)(() => ({
   margin: 16,
   marginBottom:'5px',
   textAlign: "center",
