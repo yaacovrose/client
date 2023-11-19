@@ -51,7 +51,7 @@ const Categories = () => {
   }, [log]);
 
   return (
-    <main>
+    <main style={{backgroundColor:'rgb(253,231,157)'}}>
       <div className="page">
         {products && <Filters  products={products} />}
         <div
