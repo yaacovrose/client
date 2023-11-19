@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Remove } from "@mui/icons-material";
@@ -18,14 +18,17 @@ const ShoppingCart = () => {
   const dispatch = useAppDispatch();
   
   return (
-    <div>
+    <Stack spacing={3} sx={{flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+      <Typography margin={"20px"} variant="h2">Shopping Cart</Typography>
+      <Stack sx={{display: "flex", flexDirection: "row"}}>
       {cart.products.map((obj, index) => {
         const product = data.products.find(product => product.id === obj.productId);
         const quantity = obj.quantity
         return (
+          
           <Card key={index} sx={{ maxWidth: 345 }}>
             <CardActionArea>
-              <CardMedia component="img" height="140" alt="green iguana" />
+              <CardMedia component="img" height="140" alt="green iguana" src={product?.image}/>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   {product?.title}
@@ -50,10 +53,12 @@ const ShoppingCart = () => {
           </Card>
         );
       })}
-      <Button variant="contained" disableElevation onClick={()=>dispatch(purchase())}>
+      </Stack>
+      
+      <Button sx={{margin: "20px"}} variant="contained" disableElevation onClick={()=>dispatch(purchase())}>
         Make a Purchase
       </Button>
-    </div>
+    </Stack>
   );
 };
 export default ShoppingCart;

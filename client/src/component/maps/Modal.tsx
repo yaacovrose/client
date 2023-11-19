@@ -34,7 +34,8 @@ export default function NestedModal() {
 
   return (
     <div>
-          <Button onClick={handleOpen} style={{ width: '78px', height: '78px' }}>
+          <Button onClick={handleOpen} style={{ width: '78px', height: '78px', flex: 1, marginLeft: "10px", marginTop: "10px"
+ }}>
       <img
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUKYIhokQapnFpH3RBhbJFHixMfRN9t9QXxw&usqp=CAU"
         alt="Marker"

@@ -1,0 +1,40 @@
+
+.heder {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #2196f3; /* כחול כהה */
+    color: #fff; /* צבע טקסט לבן */
+  }
+  
+  .heder button {
+    background-color: #64b5f6; /* כחול בהיר */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .heder button:hover {
+    background-color: #1976d2; /* כחול כהה יותר בעת העטפת */
+  }
+  
+  /* עיצוב יותר מודרני לאייקונים */
+  .heder svg {
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  /* עיצוב לסימן השולף בתיק הקניות */
+  .heder .MuiBadge-badge {
+    right: -5px;
+    top: 0;
+    border: 2px solid #fff;
+    padding: 0 5px;
+    background-color: #f50057; /* כחול כהה */
+  }
+  

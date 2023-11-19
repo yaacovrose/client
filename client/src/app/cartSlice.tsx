@@ -47,7 +47,6 @@ const cartSlice = createSlice({
       } else {
         state.products.push({ productId, quantity });
       }
-      // axios.put(`http://localhost:8181/api/cart`, {
       axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
@@ -62,7 +61,6 @@ const cartSlice = createSlice({
       if (existingProduct) {
         existingProduct.quantity += 1;
         if (state.userName !== "") {
-          // axios.put(`http://localhost:8181/api/cart`, {
           axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
             _id: state._id,
             userName: state.userName,
@@ -79,7 +77,6 @@ const cartSlice = createSlice({
       if (existingProduct && existingProduct.quantity > 0) {
         existingProduct.quantity -= 1;
         if (state.userName !== "") {
-          // axios.put(`http://localhost:8181/api/cart`, {
           axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
             _id: state._id,
             userName: state.userName,
@@ -90,7 +87,6 @@ const cartSlice = createSlice({
     },
     setNameCart: (state, action) => {
       state.userName = action.payload;
-      // axios.put(`http://localhost:8181/api/cart`, {
       axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
@@ -107,7 +103,6 @@ const cartSlice = createSlice({
       state.products = updatedProducts;
       if (state.userName !== "") {
         console.log(state.userName);
-        // axios.put(`http://localhost:8181/api/cart`, {
         axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
           _id: state._id,
           userName: state.userName,
@@ -115,10 +110,10 @@ const cartSlice = createSlice({
         });
       }
     },
+
   purchase: (state) => {
     state.products = []
     if (state.userName !== "") {
-      // axios.put(`http://localhost:8181/api/cart`, {
       axios.put(`https://api-store-f2id.onrender.com/api/cart`, {
         _id: state._id,
         userName: state.userName,
@@ -126,6 +121,7 @@ const cartSlice = createSlice({
       });}
   }
   },
+
   extraReducers: (builder) => {
     builder.addCase(fetchCartData.fulfilled, (state, action) => {
       const { userName, product } = action.payload[0]
@@ -140,7 +136,7 @@ const cartSlice = createSlice({
         } else {
           state.products.push(product);
         }
-        
+
       });
     });
   },
