@@ -8,7 +8,6 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { addProduct } from "../../app/cartSlice";
 import NestedModal from "../maps/Modal";
-import { Margin } from "@mui/icons-material";
 
 export default function ProductPage() {
   const [product, setProduct] = useState<Product | undefined>(undefined);
