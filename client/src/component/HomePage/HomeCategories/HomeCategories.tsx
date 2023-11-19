@@ -48,24 +48,23 @@ export default function HomeCategories() {
 
   return (
     // <Carousel  responsive={responsive} infinite={true}>
-    <div style={{display: "flex"}}>
-      {uniqueProductsByCategory.map((cat, index) => (
-        <div>
-        <div key={index} onClick={() => handleClick(cat.category)}>
+    <div style={{display:'flex'}}>
+      {uniqueProductsByCategory.map((cat) => (
+        <div key={Date.now()*Math.random()} onClick={() => handleClick(cat.category)}>
           <CategoryCard 
             category={cat.category}
             url={url[cat.category]} 
             size={0} 
             onClick={() => handleClick(cat.category)}
           />
-        </div>
+        
           <Typography >
             {cat.category}
           </Typography>
           </div>
       ))}
-      </div>
-    // </Carousel>
+    {/* // </Carousel> */}
+    </div>
     
   );
 }
