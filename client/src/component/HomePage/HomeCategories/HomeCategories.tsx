@@ -5,6 +5,7 @@ import CategoryCard from "../../mui/Mui.CategotyCard";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/material";
 import { CategoryUrls, urls } from "../../interfaces/CategoriesUrl";
+import Slide from "@mui/material/Slide";
 
 export default function HomeCategories() {
   const data = useAppSelector((state) => state.products);
@@ -24,25 +25,22 @@ export default function HomeCategories() {
     Navigate(`/categories/${cat}`);
   };
 
-  const url: CategoryUrls = urls
+  const url: CategoryUrls = urls;
 
   return (
-    <Stack id="category" flexDirection={"column"} borderRight={"solid"} padding={"16px"}>
-      {uniqueProductsByCategory.map((obj, index) => (
-        <Stack key={index} spacing={2} alignItems={"center"} display={"flex"} >
-            <CategoryCard
-              size={1}
-              key={index}
-              category={obj.category}
-              url={url[obj.category]}
-              onClick={()=>handleClick(obj.category)}
-            />
-          <Stack >
-            <Typography onClick={()=>handleClick(obj.category)}
-             style={{marginBottom:'15px'}} variant="h6">{obj.category}</Typography>
+    <Slide in={true} direction="right" timeout={10000}>
+      <Stack sx={{ flexWrap: "wrap", height:'50' }} id="category" flexDirection={"row"} borderRight={"solid"} padding={"16px"}>
+        {uniqueProductsByCategory.map((obj, index) => (
+          <Stack sx={{ marginLeft: "12px" }} key={index} spacing={2} alignItems={"center"} display={"flex"}>
+            <CategoryCard size={0} key={index} category={obj.category} url={url[obj.category]} onClick={() => handleClick(obj.category)} />
+            <Stack>
+              <Typography onClick={() => handleClick(obj.category)} style={{ marginBottom: "15px" }} variant="h6">
+                {obj.category}
+              </Typography>
+            </Stack>
           </Stack>
-        </Stack>
-      ))}
-    </Stack>
+        ))}
+      </Stack>
+    </Slide>
   );
 }

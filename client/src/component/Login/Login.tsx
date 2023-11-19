@@ -81,7 +81,7 @@ export default function LogIn() {
 
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button  variant="outlined" onClick={handleClickOpen}>
         Log IN
       </Button>
       <Dialog open={open} onClose={handleClose}>

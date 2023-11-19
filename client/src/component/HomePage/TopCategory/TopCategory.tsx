@@ -38,13 +38,12 @@ export default function TopCategoryAndProduct() {
 
   return (
     <Stack sx={{ justifyContent: "center", alignItems: "center" }}>
-      <Typography variant="h3">Top Categories</Typography>
+      <Typography variant="h6">Top Categories</Typography>
       <Stack
         sx={{
           display: "flex",
           flexDirection: "row",
-          border: "2px black solid",
-          width: "95%",
+          width: "100%",
           justifyContent: "center",
           alignItems: "center",
         }}
@@ -52,7 +51,7 @@ export default function TopCategoryAndProduct() {
         {data?.map((obj: Product, index: number) => (
           <Stack key={index} sx={{ alignItems: "center" }}>
             <CategoryCard
-              size={0}
+              size={5}
               url={url[obj.category]}
               category={obj.category}
               onClick={handleClick}
