@@ -32,7 +32,7 @@ const ShopMap: React.FC = () => {
       { position: [-73.9857, 40.7488], name: '20 W 34th St. 27th Floor, New York, NY 10118' },
       { position: [-73.9772, 40.7527], name: '89 E 42nd St, New York, NY 10017' },
       { position: [-74.0133, 40.7131], name: '185 Greenwich St, New York, NY 10007' },
-      { position: [-73.9969, 40.7061], name: '16th St, Brooklyn, NY 11215, United States' },
+      { position: [-73.9969, 40.7061], name: '16th St, Brooklyn, NY 11215' },
       { position: [-73.9698, 40.6802], name: 'Dean St, Brooklyn, NY 11238' },
       { position: [-73.9840, 40.5755], name: '1618 Mermaid Ave, Brooklyn, NY 11224' },
       { position: [-73.9535, 40.7081], name: '319 Hooper St, Brooklyn, NY 11211' },

@@ -42,11 +42,13 @@ export default function NestedModal() {
         height="100%"
       />
     </Button>
+    
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
+        style={{ flex: 1, marginLeft: "10px" }}
       >
         <Box sx={{ ...style, width: 400 }}>
             <ShopMap/>
